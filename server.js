@@ -195,7 +195,7 @@ app.post('/api/register', upload.fields([
                     hospital_name,
                     address,
                     location,
-                    coordinates,
+                    cordinates,
                     facilities,
                     rooms,
                     doctors,
@@ -212,7 +212,7 @@ app.post('/api/register', upload.fields([
                 body.hospital_name,
                 body.address,
                 body.location || null,
-                body.location || null,
+                body.coordinates || null,
                 body.facilities,
                 body.rooms || null,
                 body.doctors || null,
@@ -227,7 +227,7 @@ app.post('/api/register', upload.fields([
             await pool.query(`
                 INSERT INTO ambulances (users_id, ambulance_type, base_chrge, min_chrge, 
                 night_chrg, wait_chrg, status, eta, book_time_slot, area, description, 
-                lic, rc, driver_exp, veh_ins, map_links, coordinates)
+                lic, rc, driver_exp, veh_ins, map_links, cordinates)
                 VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
                 [
                     userId,
@@ -288,12 +288,12 @@ app.post('/api/register', upload.fields([
         else if (users_type === 'insurance') {
             await pool.query(`
                 INSERT INTO insurances (users_id, comp_name, comp_type, description, irdai, 
-                comp_pan, gst, incorp_cert, offc_add, location, add_proof, claim_type, doc_req, 
+                comp_pan, gst, incorp_cert, offc_add, location, cordinates, add_proof, claim_type, doc_req, 
                 claim_time, cust_sup_num, email_sup, contact_person, website, ins_price, claim_price)
-                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
                 [
                     userId, body.comp_name, body.comp_type, body.description,body.irdai, body.comp_pan, body.gst,
-                    req.files['incorp_cert']?.[0]?.filename || null, body.offc_add, body.location || null,
+                    req.files['incorp_cert']?.[0]?.filename || null, body.offc_add, body.ins_lcn || null, body.ins_crdnt || null,
                     req.files['add_proof']?.[0]?.filename || null,
                     body.claim_type, body.doc_req, body.claim_time, body.cust_sup_num, body.email_sup, body.contact_person,
                     body.website, body.ins_price, body.claim_price
@@ -306,9 +306,9 @@ app.post('/api/register', upload.fields([
             await pool.query(`
                 INSERT INTO medicines 
                 (users_id, pharm_name, owner_name, shop_type, description, drug_lic, issued_by, 
-                 address, address_proof, location, phar_counc_reg, prod_avb, home_dev, 
+                 address, address_proof, location, cordinates, phar_counc_reg, prod_avb, home_dev, 
                  dev_area, dev_chrg, shop_hrs, avlblty, gst_cer, pharm_cer)
-                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
                 [
                     userId,
                     body.pharm_name,
@@ -320,6 +320,7 @@ app.post('/api/register', upload.fields([
                     body.address,
                     req.files['address_proof']?.[0]?.filename || null,
                     body.location,
+                    body.med_crdnt || null,
                     body.phar_counc_reg,
                     body.prod_avb || null,
                     body.home_dev,
@@ -338,8 +339,8 @@ app.post('/api/register', upload.fields([
             await pool.query(`
                 INSERT INTO med_equipments 
                 (users_id, ven_bus_name, owner_name, business_type, description, address, 
-                 address_proof, location, qual_cer, app_comp)
-                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+                 address_proof, location, cordinates, qual_cer, app_comp)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
                 [
                     userId,
                     body.ven_bus_name,
@@ -348,7 +349,8 @@ app.post('/api/register', upload.fields([
                     body.description,
                     body.address,
                     req.files['address_proof']?.[0]?.filename || null,
-                    body.location,
+                    body.location || null,
+                    body.medeq_crdnt || null,
                     req.files['qual_cer']?.[0]?.filename || null,
                     req.files['app_comp']?.[0]?.filename || null
                 ]
