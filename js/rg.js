@@ -1,161 +1,250 @@
-window.onload = function () {
-    document.getElementById("hospitalFields").classList.add("hidden");
-    // HOSPITAL
-    const hospitalAddress =
-    document.getElementById("address");
-    if(hospitalAddress){
-        hospitalAddress.addEventListener(
-            "input",
-            function(){
-                generateMapData(
-                    "address",
-                    "hsp_lcn",
-                    "hps_crdnt"
-                );
-            }
-        );
-    }
-    //ambulance
-    const ambulanceAddress=document.getElementById("amb_loc");
-    if(ambulanceAddress){
-        ambulanceAddress.addEventListener("input", function(){
-            generateMapData("amb_loc", "amb_lcn", "amb_crdnt");
-        });
-    }
-    // LAB
-    const labAddress = document.getElementById("labAddress");
-    if(labAddress){
-        labAddress.addEventListener(
-            "input",
-            function(){
-                generateMapData(
-                    "labAddress",
-                    "location",
-                    "lab_crdnt"
-                );
-            }
-        );
-    }
-    
-    const insuranceAddress =
-    document.getElementById("ins_address");
+let mapFetchTimer;
 
-    if(insuranceAddress){
+async function generateMapData(
+    addressId,
+    locationId,
+    coordinatesId
+) {
 
-        insuranceAddress.addEventListener(
-            "input",
-            function(){
+    const addressInput =
+        document.getElementById(addressId);
 
-                generateMapData(
-                    "ins_address",
-                    "ins_lcn",
-                    "ins_crdnt"
-                );
+    if (!addressInput) return;
 
-            }
-        );
+    const address =
+        addressInput.value.trim();
 
-    }
+    if (!address) return;
 
-const medicalAddress =
-document.getElementById("pharm_address");
+    // Generate Google Maps Link
+    const mapsLink =
+        `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(address)}`;
 
-if(medicalAddress){
+    document.getElementById(
+        locationId
+    ).value = mapsLink;
 
-    medicalAddress.addEventListener(
-        "input",
-        function(){
+    try {
 
-            generateMapData(
-                "pharm_address",
-                "pharm_lcn",
-                "pharm_crdnt"
+        let searchQueries = [
+
+            address,
+
+            `${address}, Maharashtra, India`,
+
+            address
+                .replace(/hospital/gi, "")
+                .replace(/clinic/gi, "")
+                .replace(/medical/gi, "")
+                .replace(/lab/gi, "")
+                .replace(/pathology/gi, "")
+                .replace(/diagnostic/gi, "")
+                .trim() + ", Maharashtra, India"
+        ];
+
+        let lat = "";
+        let lon = "";
+        let found = false;
+
+        for (const query of searchQueries) {
+
+            console.log(
+                "Searching:",
+                query
             );
+
+            const response =
+                await fetch(
+                    `https://photon.komoot.io/api/?q=${encodeURIComponent(query)}&limit=10`
+                );
+
+            const data =
+                await response.json();
+
+            console.log(
+                "Response:",
+                data
+            );
+
+            if (
+                data &&
+                data.features &&
+                data.features.length > 0
+            ) {
+
+                lon =
+                    data.features[0]
+                    .geometry
+                    .coordinates[0];
+
+                lat =
+                    data.features[0]
+                    .geometry
+                    .coordinates[1];
+
+                found = true;
+
+                break;
+            }
+        }
+
+        if (found) {
+
+            document.getElementById(
+                coordinatesId
+            ).value =
+                `${lat},${lon}`;
+
+            console.log(
+                "Coordinates Found:",
+                lat,
+                lon
+            );
+
+        } else {
+
+            document.getElementById(
+                coordinatesId
+            ).value =
+                "Coordinates Not Found";
+
+            console.warn(
+                "Coordinates Not Found For:",
+                address
+            );
+        }
+
+    } catch (error) {
+
+        console.error(
+            "Location Error:",
+            error
+        );
+
+        document.getElementById(
+            coordinatesId
+        ).value =
+            "Coordinates Not Found";
+    }
+}
+function bindAddressAutoFetch(
+    addressId,
+    locationId,
+    coordinatesId
+) {
+    const addressField =
+        document.getElementById(
+            addressId
+        );
+
+    if (!addressField)
+        return;
+
+    addressField.addEventListener(
+        "input",
+        function () {
+
+            clearTimeout(
+                mapFetchTimer
+            );
+
+            mapFetchTimer =
+                setTimeout(
+                    () => {
+
+                        generateMapData(
+                            addressId,
+                            locationId,
+                            coordinatesId
+                        );
+
+                    },
+                    1500
+                );
+        }
+    );
+}
+
+function bindAddressAutoFetch(
+    addressId,
+    locationId,
+    coordinatesId
+) {
+
+    const addressField =
+        document.getElementById(addressId);
+
+    if (!addressField) return;
+
+    addressField.addEventListener(
+        "input",
+        function () {
+
+            clearTimeout(mapFetchTimer);
+
+            mapFetchTimer = setTimeout(() => {
+
+                generateMapData(
+                    addressId,
+                    locationId,
+                    coordinatesId
+                );
+
+            }, 1000);
 
         }
     );
-
 }
 
-    const meaddress=document.getElementById("me_address");
-    if(meaddress){
-        meaddress.addEventListener("input", function(){
-            generateMapData("me_address", "me_location", "me_crdnt");
-        });
-    }
+window.onload = function () {
+
+    document
+        .getElementById("hospitalFields")
+        ?.classList.add("hidden");
+
+    // Hospital
+    bindAddressAutoFetch(
+        "address",
+        "hsp_lcn",
+        "hsp_crdnt"
+    );
+
+    // Ambulance
+    bindAddressAutoFetch(
+        "amb_loc",
+        "amb_lcn",
+        "amb_crdnt"
+    );
+
+    // Lab
+    bindAddressAutoFetch(
+        "labAddress",
+        "location",
+        "lab_crdnt"
+    );
+
+    // Insurance
+    bindAddressAutoFetch(
+        "ins_address",
+        "ins_lcn",
+        "ins_crdnt"
+    );
+
+    // Pharmacy
+    bindAddressAutoFetch(
+        "pharm_address",
+        "pharm_lcn",
+        "pharm_crdnt"
+    );
+
+    // Medical Equipments
+    bindAddressAutoFetch(
+        "me_address",
+        "me_location",
+        "me_crdnt"
+    );
 
 };
-
-async function generateMapData(
-    addressInputId,
-    locationInputId,
-    coordinateInputId
-){
-
-    const addressField =
-    document.getElementById(addressInputId);
-
-    const locationField =
-    document.getElementById(locationInputId);
-
-    const coordinateField =
-    document.getElementById(coordinateInputId);
-
-    if(
-        !addressField ||
-        !locationField ||
-        !coordinateField
-    ){
-        return;
-    }
-
-    const address =
-    addressField.value.trim();
-
-    if(address.length < 5){
-
-        locationField.value = "";
-        coordinateField.value = "";
-        return;
-
-    }
-
-    try{
-
-        const response =
-        await fetch(
-            `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(address)}`
-        );
-
-        const data =
-        await response.json();
-
-        if(data.length > 0){
-
-            const latitude =
-            data[0].lat;
-
-            const longitude =
-            data[0].lon;
-
-            // Coordinates
-            coordinateField.value =
-            `${latitude}, ${longitude}`;
-
-            // Google Maps Link
-            locationField.value =
-            `https://www.google.com/maps?q=${latitude},${longitude}`;
-
-        }
-
-    }
-    catch(error){
-
-        console.error(error);
-
-    }
-
-}
 
 function showRegister() {
     document.getElementById("loginForm").classList.add("hidden");
@@ -358,7 +447,7 @@ document.querySelector("#registerForm form").addEventListener("submit", async fu
         const ambSelects = document.querySelectorAll("#ambulanceFields select");
 
         formData.append("ambulance_type", ambSelects[0]?.value || "");
-        formData.append("base_chrge", ambInputs[0]?.value || "");
+        formData.append("base_chrge", document.querySelector("[name='base_chrge']").value);
         formData.append("min_chrge", ambInputs[1]?.value || "");
         formData.append("night_chrg", ambInputs[2]?.value || "");
         formData.append("wait_chrg", ambInputs[3]?.value || "");
