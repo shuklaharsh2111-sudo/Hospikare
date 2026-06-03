@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hospitals</title>
+
+    <link rel="stylesheet" href="/css/hsp.css">
+
+    <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+</head>
+
+<body>
+
+    <nav id="navbar">
+        <div id="leftNavbar">
+            <div id="logoBox">
+                <img src="/assets/logo.png" id="logoImage">
+            </div>
+            <h2 id="welcomeText">
+                Welcome
+            </h2>
+        </div>
+        <div id="centerNavbar">
+            <div class="navItem">
+                <i class="fa-solid fa-chart-line"></i>
+                <span>Dashboard</span>
+            </div>
+            <div class="navItem">
+                <i class="fa-solid fa-hospital"></i>
+                <span>Hospitals</span>
+            </div>
+            <div class="navItem">
+                <i class="fa-solid fa-calendar-check"></i>
+                <span>Bookings</span>
+            </div>
+            <div class="navItem">
+                <i class="fa-solid fa-bed"></i>
+                <span>Availability</span>
+            </div>
+            <div class="navItem">
+                <i class="fa-solid fa-credit-card"></i>
+                <span>Payments</span>
+            </div>
+            <div class="navItem">
+                <i class="fa-solid fa-star"></i>
+                <span>Reviews</span>
+            </div>
+        </div>
+
+        <div id="rightNavbar">
+            <button id="logoutBtn">
+                <i class="fa-solid fa-right-from-bracket"></i>
+                Logout
+            </button>
+        </div>
+    </nav>
+
+    <div id="mainContainer">
+
+    <div id="dashboardSection">
+    <div id="dashboardTop">
+        <div class="dashboardCard blueCard">
+            <div class="dashboardIcon">
+                <i class="fa-solid fa-calendar-check"></i>
+            </div>
+            <div>
+                <h4>Total Bookings</h4>
+                <h2 id="totalBookings">
+                    0
+                </h2>
+                <p>
+                    +15% this month
+                </p>
+            </div>
+        </div>
+        <div class="dashboardCard greenCard">
+            <div class="dashboardIcon">
+                <i class="fa-solid fa-bed"></i>
+            </div>
+            <div>
+                <h4>Room Bookings</h4>
+                <h2 id="roomBookings">
+                    0
+                </h2>
+                <p>
+                    +8% this month
+                </p>
+            </div>
+        </div>
+        <div class="dashboardCard purpleCard">
+            <div class="dashboardIcon">
+                <i class="fa-solid fa-user-doctor"></i>
+            </div>
+            <div>
+                <h4>Appointments</h4>
+                <h2 id="appointmentsCount">
+                    0
+                </h2>
+                <p>
+                    +12% this month
+                </p>
+            </div>
+        </div>
+        <div class="dashboardCard orangeCard">
+            <div class="dashboardIcon">
+                <i class="fa-solid fa-indian-rupee-sign"></i>
+            </div>
+            <div>
+                <h4>Total Earnings</h4>
+                <h2 id="totalEarnings">
+                    ₹0
+                </h2>
+                <p>
+                    +18% this month
+                </p>
+            </div>
+        </div>
+    </div>
+    <div id="dashboardBottom"
+        <div class="dashboardTableBox">
+            <div class="tableHeader">
+                <h3>
+                    Recent Bookings
+                </h3>
+            </div>
+            <table class="dashboardTable">
+                <thead>
+                    <tr>
+                        <th>Patient</th>
+                        <th>Hospital</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody id="recentBookingsBody">
+                </tbody>
+            </table>
+        </div>
+        <div class="dashboardTableBox">
+            <div class="tableHeader">
+                <h3>
+                    Recent Payments
+                </h3>
+            </div>
+            <table class="dashboardTable">
+                <thead>
+                    <tr>
+                        <th>Amount</th>
+                        <th>Status</th>
+                        <th>Date</th>
+                    </tr>
+                </thead>
+                <tbody id="recentPaymentsBody">
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+        <div id="hospitalSection" style="display:none;">
+            <div id="hospitalTopBar">
+                <button id="addHospitalBtn">
+                    <i class="fa-solid fa-plus"></i>Add Hospital</button>
+            </div>
+            <div id="hospitalTableContainer">
+                <table id="hospitalTable">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Hospital Name</th>
+                            <th>Address</th>
+                            <th>Location</th>
+                            <th>Facilities</th>
+                            <th>Created At</th>
+                        </tr>
+                    </thead>
+                    <tbody id="hospitalTableBody">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div id="availabilitySection" style="display: none;">
+            <div id="availabilityTopBar">
+                <button id="addAvailabilityBtn">
+                    <i class="fa-solid fa-plus"></i>
+                    Add Room
+                </button>
+            </div>
+            <div id="availabilityTableContainer">
+<div id="availabilityWrapper">
+    <div class="availabilityTableSection">
+        <div class="availabilityHeader">
+            <h2>
+                Available Rooms
+            </h2>
+        </div>
+        <div class="availabilityTableContainer">
+            <table class="availabilityTable">
+                <thead>
+                    <tr>
+                        <th>Hospital</th>
+                        <th>Room Type</th>
+                        <th>Beds</th>
+                        <th>Pricing</th>
+                        <th>Details</th>
+                        <th>Update Beds</th>
+                        <th>Update Availability</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="availableRoomsContainer">
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="availabilityTableSection">
+        <div class="availabilityHeader unavailableHeader">
+            <h2>
+                Unavailable Rooms
+            </h2>
+        </div>
+        <div class="availabilityTableContainer">
+            <table class="availabilityTable">
+                <thead>
+                   <tr>
+                        <th>Hospital</th>
+                        <th>Room Type</th>
+                        <th>Beds</th>
+                        <th>Pricing</th>
+                        <th>Details</th>
+                        <th>Update Beds</th>
+                        <th>Update Availability</th>
+                        <th>Action</th>
+                   </tr>
+                </thead>
+                <tbody id="unavailableRoomsContainer">
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+            </div>
+        </div>
+
+        <div id="bookingsSection" style="display:none;">
+
+    <div class="bookingTopBar">
+
+        <h2>
+            Hospital Bookings
+        </h2>
+
+    </div>
+
+    <div class="bookingTableContainer">
+
+        <table class="bookingTable">
+
+            <thead>
+
+                <tr>
+                    <th>ID</th>
+                    <th>Patient</th>
+                    <th>Age</th>
+                    <th>Gender</th>
+                    <th>Hospital</th>
+                    <th>Room</th>
+                    <th>Bed</th>
+                    <th>Admission</th>
+                    <th>Discharge</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody id="bookingsTableBody">
+            </tbody>
+        </table>
+    </div>
+        </div>
+
+        <div id="paymentsSection" style="display:none;">
+    <div class="paymentsTopBar">
+        <h2>Vendor Payments</h2>
+    </div>
+    <div class="paymentsTableContainer">
+        <table class="paymentsTable">
+            <thead>
+                <tr>
+                    <th>User ID</th>
+                    <th>Amount</th>
+                    <th>Razorpay Payment ID</th>
+                    <th>Status</th>
+                    <th>Paid At</th>
+                </tr>
+            </thead>
+            <tbody id="paymentsTableBody">
+            </tbody>
+        </table>
+    </div>
+        </div>
+    </div>
+
+<div id="hospitalModal">
+    <div id="hospitalModalBox">
+        <div id="hospitalModalHeader">
+            <h2>Add Hospital</h2>
+            <button id="closeHospitalModal">
+                X
+            </button>
+        </div>
+        <form id="hospitalForm">
+            <div id="hospitalFormGrid">
+                <div class="hospitalInputGroup fullWidth">
+                    <label>Hospital Images</label>
+                    <input
+                        type="file"
+                        id="hospital_images"
+                        multiple
+                        accept="image/*"
+                    >
+                </div>
+                <div class="hospitalInputGroup">
+                    <label>Hospital Name</label>
+                    <input
+                        type="text"
+                        id="hospital_name"
+                    >
+                </div>
+                <div class="hospitalInputGroup">
+                    <label>Address</label>
+                    <input
+                        type="text"
+                        id="hospital_address"
+                    >
+                </div>
+                <div class="hospitalInputGroup fullWidth">
+                    <label>Facilities</label>
+                    <input
+                        type="text"
+                        id="hospital_facilities"
+                    >
+                </div>
+                <div class="fullWidth">
+                    <div class="sectionTop">
+                        <h3>Rooms</h3>
+                        <button type="button" id="addRoomBtn">+ Add Room</button>
+                    </div>
+                    <div id="roomsContainer">
+                    </div>
+                </div>
+                <div class="fullWidth">
+                    <div class="sectionTop">
+                        <h3>Doctors</h3>
+                        <button type="button" id="addDoctorBtn">+ Add Doctor</button>
+                    </div>
+                    <div id="doctorsContainer">
+                    </div>
+                </div>
+                <div class="hospitalInputGroup">
+                    <label>
+                        Hospital Registration
+                    </label>
+                    <input type="file" id="hospital_reg_certificate"
+                    >
+                </div>
+                <div class="hospitalInputGroup">
+                    <label>Shop License</label>
+                    <input type="file" id="shop_license"
+                    >
+                </div>
+                <div class="hospitalInputGroup">
+                    <label>
+                        Medical Council Registration
+                    </label>
+                    <input type="file" id="medical_council_registration"
+                    >
+                </div>
+                <div class="hospitalInputGroup">
+                    <label>
+                        Electricity Bill
+                    </label>
+                    <input type="file" id="electricity_bill"
+                    >
+                </div>
+            </div>
+            <button type="submit" id="saveHospitalBtn">
+                Save Hospital
+            </button>
+        </form>
+    </div>
+</div>
+
+<div id="roomModal">
+    <div id="roomModalBox">
+        <div id="roomModalHeader">
+            <h2>Add Room</h2>
+            <button id="closeRoomModal">
+                X
+            </button>
+        </div>
+        <form id="roomForm">
+            <div class="roomFormGrid">
+                <div class="hospitalInputGroup">
+                    <label>Hospital</label>
+                    <select id="room_hospital">
+                    </select>
+                </div>
+                <div class="hospitalInputGroup">
+                    <label>Details</label>
+                    <input type="text" id="room_details">
+                </div>
+                <div class="hospitalInputGroup">
+                    <label>Pricing</label>
+                    <input type="text" id="room_pricing">
+                </div>
+                <div class="hospitalInputGroup">
+                    <label>Room Type</label>
+                    <select id="room_type">
+                        <option>
+                            General
+                        </option>
+                        <option>
+                            ICU
+                        </option>
+                        <option>
+                            Deluxe
+                        </option>
+                    </select>
+                </div>
+                <div class="hospitalInputGroup">
+                    <label>Total Beds</label>
+                    <input type="text" id="room_total_beds">
+                </div>
+                <div class="hospitalInputGroup">
+                    <label>Availability</label>
+                    <select id="room_availability">
+                        <option>
+                            Available
+                        </option>
+                        <option>
+                            Unavailable
+                        </option>
+                    </select>
+                </div>
+            </div>
+            <button type="submit" id="saveRoomBtn">
+                Save Room
+            </button>
+        </form>
+    </div>
+</div>
+
+    <script src="/js/hsp.js"></script>
+</body>
+</html>

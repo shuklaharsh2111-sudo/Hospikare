@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+    content="width=device-width, initial-scale=1.0">
+    <title>Ambulances</title>
+    <link rel="stylesheet" type="text/css" href="/css/amb.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+</head>
+<body>
+
+    <nav id="navbar">
+        <div id="leftNavbar">
+            <div id="logoBox">
+                <img src="/assets/logo.png" id="logoImage">
+            </div>
+            <h2 id="welcomeText">
+                Welcome
+            </h2>
+        </div>
+        <div id="centerNavbar">
+            <div class="navItem activeNav">
+                <i class="fa-solid fa-chart-line"></i>
+                <span>
+                    Dashboard
+                </span>
+            </div>
+            <div class="navItem">
+                <i class="fa-solid fa-truck-medical"></i>
+                <span>
+                    Ambulances
+                </span>
+            </div>
+            <div class="navItem">
+                <i class="fa-solid fa-calendar-check"></i>
+                <span>
+                    Bookings
+                </span>
+            </div>
+            <div class="navItem">
+                <i class="fa-solid fa-bed"></i>
+                <span>
+                    Availability
+                </span>
+            </div>
+            <div class="navItem">
+                <i class="fa-solid fa-credit-card"></i>
+                <span>Payments</span>
+            </div>
+            <div class="navItem">
+                <i class="fa-solid fa-star"></i>
+                <span>
+                    Reviews
+                </span>
+            </div>
+        </div>
+        <div id="rightNavbar">
+            <button id="logoutBtn">
+                <i class="fa-solid fa-right-from-bracket"></i>
+                Logout
+            </button>
+        </div>
+    </nav>
+
+    <div id="mainContainer">
+
+        <div id="dashboardSection">
+
+    <div class="dashboardTop">
+
+        <div class="dashboardCard blueCard">
+            <div class="dashboardIcon">
+                <i class="fa-solid fa-truck-medical"></i>
+            </div>
+            <div>
+                <h2 id="totalAmbulances">0</h2>
+                <p>Total Ambulances</p>
+                <span id="availableAmbulances">
+                    0 Available
+                </span>
+            </div>
+        </div>
+
+        <div class="dashboardCard greenCard">
+            <div class="dashboardIcon">
+                <i class="fa-solid fa-calendar-check"></i>
+            </div>
+            <div>
+                <h2 id="totalBookings">0</h2>
+                <p>Total Bookings</p>
+                <span>
+                    This Month
+                </span>
+            </div>
+        </div>
+
+        <div class="dashboardCard purpleCard">
+            <div class="dashboardIcon">
+                <i class="fa-solid fa-indian-rupee-sign"></i>
+            </div>
+            <div>
+                <h2 id="totalEarnings">₹0</h2>
+                <p>Total Earnings</p>
+                <span>
+                    This Month
+                </span>
+            </div>
+        </div>
+
+        <div class="dashboardCard orangeCard">
+            <div class="dashboardIcon">
+                <i class="fa-solid fa-wallet"></i>
+            </div>
+            <div>
+                <h2 id="vendorPayout">₹0</h2>
+                <p>Total Payouts</p>
+                <span>
+                    This Month
+                </span>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="dashboardBottom">
+
+        <div class="dashboardTableBox">
+            <div class="dashboardHeader">
+                Recent Bookings
+            </div>
+
+            <table class="dashboardTable">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Patient</th>
+                        <th>Pickup</th>
+                        <th>Destination</th>
+                        <th>Amount</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+
+                <tbody id="dashboardBookingBody">
+
+                </tbody>
+
+            </table>
+        </div>
+
+        <div class="dashboardTableBox">
+            <div class="dashboardHeader">
+                Recent Payouts
+            </div>
+
+            <table class="dashboardTable">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Amount</th>
+                        <th>Payment ID</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+
+                <tbody id="dashboardPaymentBody">
+
+                </tbody>
+
+            </table>
+        </div>
+
+    </div>
+
+        </div>
+
+        <div id="ambulanceSection">
+            <div id="ambulanceTopBar">
+                <button id="addAmbulanceBtn">
+                    <i class="fa-solid fa-plus"></i>
+                    Add Ambulance
+                </button>
+            </div>
+        <div id="ambulanceTableContainer">
+            <table id="ambulanceTable">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Type</th>
+                        <th>Base Charge</th>
+                        <th>Per KM</th>
+                        <th>Night Charge</th>
+                        <th>Status</th>
+                        <th>ETA</th>
+                        <th>Area</th>
+                        <th>Created</th>
+                    </tr>
+                </thead>
+                <tbody id="ambulanceTableBody">
+                </tbody>
+            </table>
+        </div>
+        </div>
+
+        <div id="availabilitySection">
+    <div id="availabilityTopBar">
+        <h2>
+            Ambulance Availability
+        </h2>
+    </div>
+    <div class="availabilityWrapper">
+        <h3 class="availableHeading">
+            Available Ambulances
+        </h3>
+        <div class="availabilityTableContainer">
+            <table class="availabilityTable">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Type</th>
+                        <th>Area</th>
+                        <th>ETA</th>
+                        <th>Base Price</th>
+                        <th>Update Price</th>
+                        <th>Update Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="availableAmbulanceBody">
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="availabilityWrapper">
+        <h3 class="busyHeading">
+            Busy / On Trip
+        </h3>
+        <div class="availabilityTableContainer">
+            <table class="availabilityTable">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Type</th>
+                        <th>Area</th>
+                        <th>ETA</th>
+                        <th>Base Price</th>
+                        <th>Update Price</th>
+                        <th>Update Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="busyAmbulanceBody">
+                </tbody>
+            </table>
+        </div>
+    </div>
+        </div>
+
+        <div id="bookingsSection">
+    <div id="bookingsTopBar">
+        <h2>
+            Ambulance Bookings
+        </h2>
+    </div>
+    <div class="bookingsTableContainer">
+        <table class="bookingsTable">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Patient</th>
+                    <th>Condition</th>
+                    <th>Pickup</th>
+                    <th>Destination</th>
+                    <th>Booking Date</th>
+                    <th>Total</th>
+                    <th>Created</th>
+                    <th>Booking Status</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody id="bookingsTableBody">
+            </tbody>
+        </table>
+    </div>
+        </div>
+
+        <div id="paymentsSection">
+    <div id="paymentsTopBar">
+        <h2>
+            Payment History
+        </h2>
+    </div>
+    <div class="paymentsTableContainer">
+        <table class="paymentsTable">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Amount</th>
+                    <th>Razorpay Payment ID</th>
+                    <th>Status</th>
+                    <th>Paid At</th>
+                </tr>
+            </thead>
+            <tbody id="paymentsTableBody">
+            </tbody>
+        </table>
+    </div>
+        </div>
+
+    </div>
+
+<div id="ambulanceModal">
+    <div id="ambulanceModalBox">
+        <div id="ambulanceModalHeader">
+            <h2>
+                Add Ambulance
+            </h2>
+            <button id="closeAmbulanceModal">
+                X
+            </button>
+        </div>
+        <form id="ambulanceForm">
+            <div id="ambulanceFormGrid">
+                <div class="ambulanceInputGroup">
+                    <label>
+                        Ambulance Type
+                    </label>
+                    <select id="ambulance_type">
+                        <option>
+                            Basic
+                        </option>
+                        <option>
+                            ICU
+                        </option>
+                        <option>
+                            Oxygen Supported
+                        </option>
+                    </select>
+                </div>
+                <div class="ambulanceInputGroup">
+                    <label>
+                        Base Charge per KM
+                    </label>
+                    <input
+                        type="text"
+                        id="base_chrge"
+                    >
+                </div>
+                <div class="ambulanceInputGroup">
+                    <label>
+                        Minimum Fare
+                    </label>
+                    <input
+                        type="text"
+                        id="min_chrge"
+                    >
+                </div>
+                <div class="ambulanceInputGroup">
+                    <label>
+                        Night Charges
+                    </label>
+                    <input
+                        type="text"
+                        id="night_chrg"
+                    >
+                </div>
+                <div class="ambulanceInputGroup">
+                    <label>
+                        Waiting Charges
+                    </label>
+                    <input
+                        type="text"
+                        id="wait_chrg"
+                    >
+                </div>
+                <div class="ambulanceInputGroup">
+                    <label>
+                        Status
+                    </label>
+                    <select id="status">
+                        <option>
+                            Available
+                        </option>
+                        <option>
+                            Busy / On Trip
+                        </option>
+                    </select>
+                </div>
+                <div class="ambulanceInputGroup">
+                    <label>
+                        ETA
+                    </label>
+                    <input
+                        type="text"
+                        id="eta"
+                    >
+                </div>
+                <div class="ambulanceInputGroup">
+                    <label>
+                        Booking Time Slot
+                    </label>
+                    <input
+                        type="text"
+                        id="book_time_slot"
+                    >
+                </div>
+                <div class="ambulanceInputGroup">
+                    <label>
+                        Area
+                    </label>
+                    <input
+                        type="text"
+                        id="area"
+                    >
+                </div>
+                <div class="ambulanceInputGroup fullWidth">
+                    <label>
+                        Description
+                    </label>
+                    <input
+                        type="text"
+                        id="description"
+                    >
+                </div>
+                <div class="ambulanceInputGroup">
+                    <label>
+                        Driving License
+                    </label>
+                    <input
+                        type="file"
+                        id="lic"
+                    >
+                </div>
+                <div class="ambulanceInputGroup">
+                    <label>
+                        Vehicle RC Permit
+                    </label>
+                    <input
+                        type="file"
+                        id="rc"
+                    >
+                </div>
+                <div class="ambulanceInputGroup">
+                    <label>
+                        Driver Experience
+                    </label>
+                    <input
+                        type="text"
+                        id="driver_exp"
+                    >
+                </div>
+                <div class="ambulanceInputGroup">
+                    <label>
+                        Vehicle Insurance
+                    </label>
+                    <input
+                        type="file"
+                        id="veh_ins"
+                    >
+                </div>
+            </div>
+            <button
+                type="submit"
+                id="saveAmbulanceBtn"
+            >
+                Save Ambulance
+            </button>
+        </form>
+    </div>
+</div>
+
+    <script src="/js/amb.js"></script>
+</body>
+</html>

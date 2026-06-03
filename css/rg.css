@@ -1,0 +1,710 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+
+body {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    background: linear-gradient(-45deg, #ff4b5c, #ff6ec7, #4facfe, #ff4b5c);
+    background-size: 400% 400%;
+    animation: gradientBG 10s ease infinite;
+    overflow-y: auto;
+    padding: 20px;
+}
+
+
+@keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+
+.container {
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(15px);
+    padding: 30px;
+    width: 100%;
+    max-width: 1000px;
+    border-radius: 20px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.25);
+    transition: 0.3s;
+}
+
+.container:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.35);
+}
+
+.hidden {
+    display: none;
+}
+
+
+h2 {
+    margin-bottom: 20px;
+    text-align: center;
+    font-weight: 600;
+    color: #ff4b5c;
+}
+
+
+form {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px;
+}
+
+
+form button,
+.switch-text {
+    grid-column: span 2;
+    text-align: center;
+}
+
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 10px;
+    border-radius: 10px;
+    transition: 0.3s;
+}
+
+.input-group:hover {
+    background: rgba(255, 75, 92, 0.05);
+}
+
+.input-group label {
+    font-size: 13px;
+    color: #555;
+    font-weight: 500;
+}
+
+.input-group input,
+.input-group select {
+    background: #fff;
+    border: 1px solid #ddd;
+    padding: 12px;
+    border-radius: 10px;
+    transition: 0.3s;
+}
+
+.input-group input:focus,
+.input-group select:focus {
+    border-color: #ff4b5c;
+    box-shadow: 0 0 8px rgba(255, 75, 92, 0.25);
+}
+
+.btn {
+    padding: 12px;
+    border: none;
+    border-radius: 10px;
+    background: linear-gradient(90deg, #ff4b5c, #ff6ec7, #4facfe);
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+    box-shadow: 0 5px 15px rgba(255, 75, 92, 0.4);
+}
+
+.btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 25px rgba(255, 75, 92, 0.6);
+}
+
+.btn.small {
+    padding: 8px;
+    font-size: 14px;
+}
+
+.switch-text {
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+.switch-text a {
+    color: #ff4b5c;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.switch-text a:hover {
+    text-decoration: underline;
+}
+
+#loginForm {
+    max-width: 400px;
+    margin: auto;
+}
+
+#loginForm form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+#registerForm form {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.logo {
+    width: 140px;
+    height: 140px;
+    object-fit: contain;
+    display: block;
+    margin: -50px auto -20px;
+    transition: 0.3s;
+}
+
+.logo:hover {
+    transform: rotate(5deg) scale(1.05);
+}
+
+h3 {
+    margin-top: 15px;
+    margin-bottom: 10px;
+    color: #ff4b5c;
+    border-left: 4px solid #ff4b5c;
+    padding-left: 10px;
+}
+
+.full-width {
+    grid-column: span 2;
+    margin-top: 10px;
+}
+
+.dynamic-box {
+    border: 1px solid rgba(0,0,0,0.1);
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 12px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    background: #fff;
+    transition: 0.3s;
+}
+
+.dynamic-box:hover {
+    transform: scale(1.02);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+.remove-btn {
+    grid-column: span 2;
+    background: #ff4b5c;
+}
+
+.remove-btn:hover {
+    background: #e63946;
+}
+
+#hospitalFields:not(.hidden) {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.checkbox-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+}
+
+.checkbox-grid label {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: #f9f9f9;
+    padding: 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+    border: 1px solid transparent;
+}
+
+.checkbox-grid label:hover {
+    background: #ffe6ea;
+    border-color: #ff4b5c;
+    transform: scale(1.03);
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(#ff4b5c, #ff6ec7, #4facfe);
+    border-radius: 10px;
+}
+
+@media (max-width: 768px) {
+    form {
+        grid-template-columns: 1fr;
+    }
+
+    .full-width {
+        grid-column: span 1;
+    }
+
+    .checkbox-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+#hospitalFields:not(.hidden),
+#ambulanceFields:not(.hidden),
+#labFields:not(.hidden),
+#insuranceFields:not(.hidden),
+#medicineFields:not(.hidden),
+#equipmentFields:not(.hidden) {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+/* ================= PROPER RESPONSIVE FOR ALL DEVICES ================= */
+
+@media (max-width: 1200px) {
+    .container {
+        max-width: 920px;
+        padding: 35px 28px;
+    }
+}
+
+@media (max-width: 992px) {
+    .container {
+        max-width: 860px;
+    }
+    
+    h2 {
+        font-size: 26px;
+    }
+}
+
+/* ================= TABLET ================= */
+@media (max-width: 768px) {
+    body {
+        padding: 15px;
+    }
+
+    .container {
+        padding: 30px 22px;
+        border-radius: 18px;
+        box-shadow: 0 12px 35px rgba(0,0,0,0.22);
+    }
+
+    form {
+        grid-template-columns: 1fr;
+        gap: 18px;
+    }
+
+    .full-width,
+    form button,
+    .switch-text {
+        grid-column: span 1;
+    }
+
+    #registerForm form {
+        grid-template-columns: 1fr;
+    }
+
+    .dynamic-box,
+    #hospitalFields:not(.hidden),
+    #ambulanceFields:not(.hidden),
+    #labFields:not(.hidden),
+    #insuranceFields:not(.hidden),
+    #medicineFields:not(.hidden),
+    #equipmentFields:not(.hidden) {
+        grid-template-columns: 1fr;
+        gap: 16px;
+        padding: 16px;
+    }
+
+    .checkbox-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+    }
+
+    .logo {
+        width: 115px;
+        height: 115px;
+        margin: -35px auto -10px;
+    }
+
+    .input-group {
+        padding: 8px;
+    }
+
+    .input-group input,
+    .input-group select {
+        padding: 13px 14px;
+        font-size: 15px;
+    }
+
+    .btn {
+        padding: 14px;
+        font-size: 16px;
+    }
+}
+
+/* ================= MOBILE LANDSCAPE ================= */
+@media (max-width: 576px) {
+    .container {
+        padding: 25px 18px;
+        border-radius: 16px;
+    }
+
+    h2 {
+        font-size: 24px;
+        margin-bottom: 20px;
+    }
+
+    h3 {
+        font-size: 18px;
+    }
+
+    .logo {
+        width: 100px;
+        height: 100px;
+        margin: -25px auto -5px;
+    }
+
+    .checkbox-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .dynamic-box {
+        padding: 14px;
+        gap: 14px;
+    }
+
+    .input-group label {
+        font-size: 13px;
+    }
+
+    .btn {
+        padding: 13px;
+        font-size: 15.5px;
+    }
+
+    .switch-text {
+        font-size: 13.5px;
+    }
+}
+
+/* ================= SMALL MOBILE ================= */
+@media (max-width: 480px) {
+    body {
+        padding: 12px 10px;
+    }
+
+    .container {
+        padding: 22px 16px;
+    }
+
+    h2 {
+        font-size: 22px;
+    }
+
+    .input-group input,
+    .input-group select {
+        padding: 12px 13px;
+    }
+
+    .btn {
+        padding: 12px;
+    }
+}
+
+/* ================= 380PX & SMALLER SCREENS ================= */
+@media (max-width: 380px) {
+    .container {
+        padding: 18px 14px;
+        border-radius: 16px;
+    }
+
+    h2 {
+        font-size: 21px;
+        margin-bottom: 18px;
+    }
+
+    .logo {
+        width: 85px;
+        height: 85px;
+        margin: -20px auto -8px;
+    }
+
+    /* Inputs ko chhota kiya */
+    .input-group {
+        padding: 6px;
+    }
+
+    .input-group label {
+        font-size: 12.5px;
+    }
+
+    .input-group input,
+    .input-group select {
+        padding: 10px 12px;
+        font-size: 14px;
+        border-radius: 8px;
+    }
+
+    .btn {
+        padding: 11px;
+        font-size: 15px;
+        border-radius: 8px;
+    }
+
+    .dynamic-box {
+        padding: 12px;
+        gap: 12px;
+    }
+
+    .checkbox-grid label {
+        padding: 9px 8px;
+        font-size: 13px;
+    }
+
+    .full-width,
+    form button,
+    .switch-text {
+        padding: 10px 0;
+    }
+}
+
+/* ================= 320PX & VERY SMALL SCREENS ================= */
+@media (max-width: 320px) {
+    body {
+        padding: 10px 8px;
+    }
+
+    .container {
+        padding: 16px 12px;
+        border-radius: 14px;
+    }
+
+    h2 {
+        font-size: 19.5px;
+        margin-bottom: 16px;
+    }
+
+    h3 {
+        font-size: 17px;
+        padding-left: 8px;
+    }
+
+    .logo {
+        width: 78px;
+        height: 78px;
+        margin: -18px auto -6px;
+    }
+
+    /* Inputs aur fields ko aur chhota kiya */
+    .input-group {
+        padding: 5px;
+        gap: 4px;
+    }
+
+    .input-group label {
+        font-size: 12px;
+    }
+
+    .input-group input,
+    .input-group select {
+        padding: 9px 11px;
+        font-size: 13.5px;
+        border-radius: 8px;
+    }
+
+    .btn {
+        padding: 10px;
+        font-size: 14.5px;
+        border-radius: 8px;
+    }
+
+    .btn.small {
+        padding: 7px;
+        font-size: 13px;
+    }
+
+    .dynamic-box {
+        padding: 11px;
+        gap: 10px;
+        margin-bottom: 12px;
+    }
+
+    .checkbox-grid label {
+        padding: 8px 7px;
+        font-size: 12.5px;
+        gap: 5px;
+    }
+
+    .switch-text {
+        font-size: 13px;
+        margin-top: 8px;
+    }
+
+    .full-width {
+        margin-top: 6px;
+    }
+}
+
+/* SECTION HEADINGS */
+
+#hospitalFields h3,
+#ambulanceFields h3,
+#labFields h3,
+#insuranceFields h3,
+#medicineFields h3,
+#equipmentFields h3{
+    width:100%;
+
+    padding:14px 18px;
+
+    background:linear-gradient(
+        135deg,
+        #ff4b5c,
+        #ff6ec7
+    );
+
+    color:white;
+
+    border-radius:12px;
+
+    margin-top:10px;
+    margin-bottom:5px;
+
+    font-size:18px;
+
+    font-weight:700;
+
+    box-shadow:
+    0 5px 15px rgba(
+        255,
+        75,
+        92,
+        0.25
+    );
+}
+
+input[type="file"]{
+    width:100%;
+
+    padding:10px;
+
+    border:2px dashed #ff6ec7;
+
+    border-radius:12px;
+
+    background:#fff8fb;
+
+    cursor:pointer;
+}
+
+input[type="file"]:hover{
+    background:#fff0f5;
+}
+
+.dynamic-box{
+    border:2px solid #ffd6e2;
+
+    background:white;
+
+    border-radius:16px;
+
+    padding:20px;
+
+    margin-top:15px;
+
+    box-shadow:
+    0 8px 20px rgba(
+        0,
+        0,
+        0,
+        0.08
+    );
+}
+
+.checkbox-grid{
+    display:grid;
+    grid-template-columns:
+    repeat(auto-fit,minmax(180px,1fr));
+
+    gap:12px;
+}
+
+.checkbox-grid label{
+    min-height:50px;
+
+    border:2px solid #ffd6e2;
+
+    background:white;
+
+    border-radius:12px;
+
+    padding:12px;
+
+    font-weight:600;
+}
+
+input[readonly]{
+    background:#f3f4f6;
+
+    color:#374151;
+
+    font-weight:600;
+
+    cursor:not-allowed;
+}
+
+#addRoomBtn,
+#addDoctorBtn{
+    height:50px;
+
+    font-size:15px;
+
+    border-radius:12px;
+}
+
+@media(max-width:768px){
+
+    #addRoomBtn,
+    #addDoctorBtn{
+
+        width:100%;
+    }
+
+}
+
+#hospitalFields,
+#ambulanceFields,
+#labFields,
+#insuranceFields,
+#medicineFields,
+#equipmentFields{
+
+    margin-top:20px;
+
+    padding:20px;
+
+    background:
+    rgba(255,255,255,0.7);
+
+    border-radius:20px;
+
+    border:1px solid
+    rgba(255,255,255,0.4);
+
+    backdrop-filter:blur(10px);
+}

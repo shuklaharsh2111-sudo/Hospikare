@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medical Equipments</title>
+    <link rel="stylesheet" type="text/css" href="/css/mdeq.css">
+    <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+</head>
+<body>
+
+    <nav id="navbar">
+        <div id="leftNavbar">
+            <div id="logoBox">
+                <img src="/assets/logo.png" id="logoImage">
+            </div>
+            <h2 id="welcomeText">
+                Welcome
+            </h2>
+        </div>
+        <div id="centerNavbar">
+            <div class="navItem activeNav">
+                <i class="fa-solid fa-chart-line"></i>
+                <span>Dashboard</span>
+            </div>
+            <div class="navItem">
+                <i class="fa-solid fa-suitcase-medical"></i>
+                <span>Products</span>
+            </div>
+            <div class="navItem">
+                <i class="fa-solid fa-box"></i>
+                <span>Orders</span>
+            </div>
+            <div class="navItem">
+                <i class="fa-solid fa-users"></i>
+                <span>Customer</span>
+            </div>
+            <div class="navItem">
+                <i class="fa-solid fa-money-bill-wave"></i>
+                <span>Payments</span>
+            </div>
+            <div class="navItem">
+                <i class="fa-solid fa-star"></i>
+                <span>Reviews</span>
+            </div>
+        </div>
+        <div id="rightNavbar">
+            <button id="logoutBtn">
+                <i class="fa-solid fa-right-from-bracket"></i>
+            </button>
+        </div>
+    </nav>
+    <div id="mainContainer">
+        <div id="productsSection">
+            <div id="topBar">
+                <button id="addProductBtn">
+                    <i class="fa-solid fa-plus"></i>
+                    Add Product
+                </button>
+            </div>
+            <div id="tableContainer">
+                <table id="productsTable">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Image</th>
+                            <th>Product</th>
+                            <th>Category</th>
+                            <th>Brand</th>
+                            <th>Price</th>
+                            <th>Stock</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="productsTableBody">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div id="productModal">
+        <div id="productModalBox">
+            <div id="productModalHeader">
+                <h2>Add Product</h2>
+                <button id="closeProductModal">
+                    X
+                </button>
+            </div>
+            <form id="productForm">
+                <div id="productFormGrid">
+                    <div class="productInputGroup">
+                        <label>Product Name</label>
+                        <input type="text" id="product_name">
+                    </div>
+                    <div class="productInputGroup">
+                        <label>Brand Name</label>
+                        <input type="text" id="brand_name">
+                    </div>
+                    <div class="productInputGroup">
+                        <label>Category</label>
+                        <input type="text" id="category">
+                    </div>
+                    <div class="productInputGroup">
+                        <label>Sub Category</label>
+                        <input type="text" id="sub_category">
+                    </div>
+                    <div class="productInputGroup">
+                        <label>Model Number</label>
+                        <input type="text" id="model_number">
+                    </div>
+                    <div class="productInputGroup">
+                        <label>Manufacturer</label>
+                        <input type="text" id="manufacturer">
+                    </div>
+                    <div class="productInputGroup">
+                        <label>Country</label>
+                        <input type="text" id="country_of_origin">
+                    </div>
+                    <div class="productInputGroup">
+                        <label>MRP</label>
+                        <input type="text" id="mrp">
+                    </div>
+                    <div class="productInputGroup">
+                        <label>Selling Price</label>
+                        <input type="text" id="selling_price">
+                    </div>
+                    <div class="productInputGroup">
+                        <label>Stock Quantity</label>
+                        <input type="text" id="stock_quantity">
+                    </div>
+                    <div class="productInputGroup">
+                        <label>Stock Status</label>
+                        <select id="stock_status">
+                            <option>
+                                In Stock
+                            </option>
+                            <option>
+                                Low Stock
+                            </option>
+                            <option>
+                                Out Of Stock
+                            </option>
+                        </select>
+                    </div>
+                    <div class="productInputGroup">
+                        <label>Warranty</label>
+                        <input type="text" id="warranty_period">
+                    </div>
+                    <div class="productInputGroup">
+                        <label>Delivery Available</label>
+                        <select id="delivery_available">
+                            <option>
+                                Yes
+                            </option>
+                            <option>
+                                No
+                            </option>
+                        </select>
+                    </div>
+                    <div class="productInputGroup">
+                        <label>Delivery Charge</label>
+                        <input type="text" id="delivery_charge">
+                    </div>
+                    <div class="productInputGroup fullWidth">
+                        <label>Description</label>
+                        <textarea id="product_description"></textarea>
+                    </div>
+                    <div class="productInputGroup">
+                        <label>Thumbnail Image</label>
+                        <input type="file" id="thumbnail_image">
+                    </div>
+                    <div class="productInputGroup">
+                        <label>Product Manual</label>
+                        <input type="file" id="product_manual">
+                    </div>
+                    <div class="productInputGroup">
+                        <label>Product Video</label>
+                        <input type="file" id="product_video">
+                    </div>
+                </div>
+                <button type="submit" id="saveProductBtn">
+                    Save Product
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <script src="/js/mdeq.js"></script>
+</body>
+</html>

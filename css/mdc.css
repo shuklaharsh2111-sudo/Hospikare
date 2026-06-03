@@ -1,0 +1,796 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,Helvetica,sans-serif;
+}
+
+body{
+    width:100%;
+    min-height:100vh;
+    background:#fff7fb;
+}
+
+#navbar{
+    width:100%;
+    height:75px;
+    background:white;
+    border-bottom:1px solid #fbcfe8;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 30px;
+    position:sticky;
+    top:0;
+    z-index:999;
+}
+
+#leftNavbar{
+    display:flex;
+    align-items:center;
+    gap:15px;
+}
+
+#logoBox{
+    width:85px;
+    height:45px;
+    border-radius:12px;
+    overflow:hidden;
+    background:#ffe4f1;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+#logoImage{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+#welcomeText{
+    color:#ec4899;
+    font-size:22px;
+    font-weight:700;
+}
+
+#centerNavbar{
+    display:flex;
+    align-items:center;
+    gap:14px;
+}
+
+.navItem{
+    height:42px;
+    padding:0 18px;
+    border-radius:12px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    cursor:pointer;
+    transition:0.3s;
+    color:#4b5563;
+    font-size:14px;
+    font-weight:600;
+}
+
+.navItem i{
+    font-size:15px;
+}
+
+.navItem:hover{
+    background:#fff1f7;
+    color:#ec4899;
+}
+
+.activeNav{
+    background:#ec4899;
+    color:white;
+}
+
+.activeNav:hover{
+    background:#ec4899;
+    color:white;
+}
+
+#rightNavbar{
+    display:flex;
+    align-items:center;
+}
+
+#logoutBtn{
+    height:44px;
+    padding:0 18px;
+    border:none;
+    border-radius:12px;
+    background:#ec4899;
+    color:white;
+    font-size:14px;
+    font-weight:600;
+    cursor:pointer;
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+#logoutBtn:hover{
+    background:#db2777;
+}
+
+#mainContainer{
+    width:100%;
+    padding:25px;
+}
+
+#medicineSection{
+    width:100%;
+    display:block;
+}
+
+#medicineTopBar{
+    width:100%;
+    display:flex;
+    justify-content:flex-end;
+    margin-bottom:20px;
+}
+
+#addMedicineBtn{
+    height:45px;
+    padding:0 18px;
+    border:none;
+    border-radius:12px;
+    background:#ec4899;
+    color:white;
+    font-size:14px;
+    font-weight:600;
+    cursor:pointer;
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+#medicineTableContainer{
+    width:100%;
+    overflow:auto;
+    background:white;
+    border-radius:18px;
+    padding:20px;
+}
+
+#medicineTable{
+    width:100%;
+    border-collapse:collapse;
+}
+
+#medicineTable th{
+    background:#fff1f7;
+    color:#ec4899;
+    padding:14px;
+    text-align:left;
+    font-size:14px;
+}
+
+#medicineTable td{
+    padding:14px;
+    border-bottom:1px solid #fce7f3;
+    font-size:14px;
+}
+
+#medicineModal{
+    width:100%;
+    height:100vh;
+    position:fixed;
+    top:0;
+    left:0;
+    background:rgba(0,0,0,0.45);
+    display:none;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+    z-index:999;
+}
+
+#medicineModalBox{
+    width:100%;
+    max-width:1200px;
+    max-height:95vh;
+    overflow-y:auto;
+    background:white;
+    border-radius:22px;
+    padding:25px;
+}
+
+#medicineModalHeader{
+    width:100%;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-bottom:20px;
+}
+
+#medicineModalHeader h2{
+    color:#ec4899;
+}
+
+#closeMedicineModal{
+    width:38px;
+    height:38px;
+    border:none;
+    border-radius:10px;
+    background:#ec4899;
+    color:white;
+    cursor:pointer;
+}
+
+#medicineFormGrid{
+    width:100%;
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:18px;
+}
+
+.medicineInputGroup{
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+}
+
+.medicineInputGroup label{
+    font-size:14px;
+    font-weight:600;
+    color:#374151;
+}
+
+.medicineInputGroup input,
+.medicineInputGroup select,
+.medicineInputGroup textarea{
+    width:100%;
+    border:1px solid #fbcfe8;
+    border-radius:12px;
+    padding:12px;
+    font-size:14px;
+    outline:none;
+}
+
+.medicineInputGroup textarea{
+    resize:none;
+    height:90px;
+}
+
+.fullWidth{
+    grid-column:1/3;
+}
+
+#saveMedicineBtn{
+    width:100%;
+    height:50px;
+    border:none;
+    border-radius:14px;
+    background:#ec4899;
+    color:white;
+    font-size:15px;
+    font-weight:700;
+    cursor:pointer;
+    margin-top:25px;
+}
+
+#ordersSection{
+    padding:20px;
+}
+
+#ordersTopBar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:20px;
+}
+
+#ordersTableContainer{
+    width:100%;
+    overflow-x:auto;
+    background:#fff;
+    border-radius:12px;
+    padding:15px;
+}
+
+#ordersTable{
+    width:100%;
+    border-collapse:collapse;
+}
+
+#ordersTable th{
+    background:#f5f5f5;
+    padding:14px;
+    text-align:center;
+    font-size:14px;
+}
+
+#ordersTable td{
+    padding:12px;
+    border-bottom:1px solid #eee;
+    text-align:center;
+    font-size:14px;
+}
+
+#paymentsSection{
+    width:100%;
+    padding:20px;
+}
+
+#paymentsTopBar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:20px;
+}
+
+#paymentsTableContainer{
+    width:100%;
+    overflow-x:auto;
+    background:#fff;
+    border-radius:12px;
+    padding:15px;
+}
+
+#paymentsTable{
+    width:100%;
+    border-collapse:collapse;
+    min-width:900px;
+}
+
+#paymentsTable th,
+#paymentsTable td{
+    padding:14px;
+    text-align:left;
+    border-bottom:1px solid #ddd;
+}
+
+#paymentsTable th{
+    background:#f5f5f5;
+}
+
+#dashboardSection{
+    padding:20px;
+    width:100%;
+}
+
+#dashboardCards{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:20px;
+    margin-bottom:25px;
+}
+
+.dashboardCard{
+    background:#fff;
+    border-radius:15px;
+    padding:20px;
+    display:flex;
+    align-items:center;
+    gap:15px;
+    box-shadow:0 2px 10px rgba(0,0,0,0.08);
+}
+
+.dashboardIcon{
+    width:60px;
+    height:60px;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:22px;
+    color:#fff;
+}
+
+.blueCard{
+    background:#4f46e5;
+}
+
+.pinkCard{
+    background:#ec4899;
+}
+
+.purpleCard{
+    background:#7c3aed;
+}
+
+.redCard{
+    background:#ef4444;
+}
+
+.dashboardCard h2{
+    margin:0;
+    font-size:28px;
+}
+
+.dashboardCard p{
+    margin:4px 0;
+    color:#555;
+}
+
+.dashboardCard span{
+    color:#22c55e;
+    font-size:14px;
+}
+
+#dashboardTables{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:20px;
+}
+
+.dashboardTableBox{
+    background:#fff;
+    padding:20px;
+    border-radius:15px;
+    overflow:auto;
+    box-shadow:0 2px 10px rgba(0,0,0,0.08);
+}
+
+.dashboardTable{
+    width:100%;
+    border-collapse:collapse;
+}
+
+.dashboardTable th,
+.dashboardTable td{
+    padding:12px;
+    border-bottom:1px solid #ddd;
+    text-align:left;
+}
+
+@media(max-width:900px){
+
+    #dashboardTables{
+        grid-template-columns:1fr;
+    }
+
+}
+
+.navItem{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    padding:12px 18px;
+    border-radius:12px;
+    cursor:pointer;
+    transition:0.3s;
+    color:#444;
+}
+
+.navItem:hover{
+    background:#ffe4ef;
+    color:#ff2e7a;
+}
+
+.activeNav{
+    background:#ff2e7a;
+    color:#fff !important;
+}
+
+.activeNav i{
+    color:#fff !important;
+}
+
+/* ========================================= */
+/* TABLE SCROLLING */
+/* ========================================= */
+
+#medicineTableContainer,
+#ordersTableContainer,
+#paymentsTableContainer,
+.dashboardTableBox{
+    overflow-x:auto;
+    -webkit-overflow-scrolling:touch;
+}
+
+#medicineTable{
+    min-width:900px;
+}
+
+#ordersTable{
+    min-width:1200px;
+}
+
+#paymentsTable{
+    min-width:1000px;
+}
+
+.dashboardTable{
+    min-width:600px;
+}
+
+/* ========================================= */
+/* NAVBAR SCROLLABLE */
+/* ========================================= */
+
+#centerNavbar{
+    overflow-x:auto;
+    overflow-y:hidden;
+    scrollbar-width:none;
+    -ms-overflow-style:none;
+    white-space:nowrap;
+}
+
+#centerNavbar::-webkit-scrollbar{
+    display:none;
+}
+
+.navItem{
+    flex-shrink:0;
+}
+
+/* ========================================= */
+/* 1024px */
+/* ========================================= */
+
+@media (max-width:1024px){
+
+    #navbar{
+        padding:0 15px;
+    }
+
+    #welcomeText{
+        font-size:18px;
+    }
+
+    #dashboardCards{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+}
+
+/* ========================================= */
+/* 768px */
+/* ========================================= */
+
+@media (max-width:768px){
+
+    #navbar{
+        height:auto;
+        padding:10px;
+        gap:10px;
+        flex-wrap:wrap;
+    }
+
+    #leftNavbar{
+        width:100%;
+        justify-content:center;
+    }
+
+    #centerNavbar{
+        width:100%;
+        justify-content:flex-start;
+        padding-bottom:5px;
+    }
+
+    #rightNavbar{
+        width:100%;
+        justify-content:center;
+    }
+
+    #mainContainer{
+        padding:15px;
+    }
+
+    #dashboardCards{
+        grid-template-columns:1fr;
+    }
+
+    #dashboardTables{
+        grid-template-columns:1fr;
+    }
+
+    #medicineFormGrid{
+        grid-template-columns:1fr;
+    }
+
+    .fullWidth{
+        grid-column:auto;
+    }
+
+    #medicineModalBox{
+        padding:15px;
+    }
+
+}
+
+/* ========================================= */
+/* 480px */
+/* ========================================= */
+
+@media (max-width:480px){
+
+    #navbar{
+        padding:8px;
+    }
+
+    #logoBox{
+        width:60px;
+        height:35px;
+    }
+
+    #welcomeText{
+        font-size:15px;
+    }
+
+    .navItem{
+        padding:10px 14px;
+        font-size:12px;
+    }
+
+    .navItem i{
+        font-size:13px;
+    }
+
+    #logoutBtn{
+        width:100%;
+        justify-content:center;
+        font-size:13px;
+    }
+
+    #mainContainer{
+        padding:10px;
+    }
+
+    .dashboardCard{
+        padding:15px;
+    }
+
+    .dashboardCard h2{
+        font-size:22px;
+    }
+
+    .dashboardCard p{
+        font-size:13px;
+    }
+
+    #medicineTopBar{
+        justify-content:center;
+    }
+
+    #addMedicineBtn{
+        width:100%;
+        justify-content:center;
+    }
+
+    #medicineModalHeader{
+        flex-direction:column;
+        gap:10px;
+        text-align:center;
+    }
+
+    #medicineModalHeader h2{
+        font-size:16px;
+    }
+
+}
+
+/* ========================================= */
+/* 380px */
+/* ========================================= */
+
+@media (max-width:380px){
+
+    .navItem{
+        padding:8px 12px;
+        font-size:11px;
+    }
+
+    #welcomeText{
+        font-size:13px;
+    }
+
+    #logoutBtn{
+        height:40px;
+        font-size:12px;
+    }
+
+    .dashboardCard{
+        flex-direction:column;
+        text-align:center;
+    }
+
+    .dashboardIcon{
+        width:50px;
+        height:50px;
+        font-size:18px;
+    }
+
+}
+
+/* ========================================= */
+/* 320px */
+/* ========================================= */
+
+@media (max-width:320px){
+
+    #navbar{
+        padding:5px;
+    }
+
+    .navItem{
+        padding:7px 10px;
+        font-size:10px;
+    }
+
+    .navItem span{
+        white-space:nowrap;
+    }
+
+    #welcomeText{
+        font-size:12px;
+    }
+
+    #mainContainer{
+        padding:5px;
+    }
+
+    #medicineModalBox{
+        padding:10px;
+    }
+
+    #medicineModalHeader h2{
+        font-size:14px;
+    }
+
+}
+
+/* ========================================= */
+/* 1440px+ */
+/* ========================================= */
+
+@media (min-width:1440px){
+
+    #mainContainer{
+        max-width:1600px;
+        margin:auto;
+    }
+
+}
+
+/* ========================================= */
+/* 4K */
+/* ========================================= */
+
+@media (min-width:2560px){
+
+    body{
+        font-size:20px;
+    }
+
+    #mainContainer{
+        max-width:2200px;
+        margin:auto;
+    }
+
+    .dashboardCard{
+        padding:30px;
+    }
+
+    .dashboardCard h2{
+        font-size:40px;
+    }
+
+}
+
+#addStockBtn{
+    height:45px;
+    padding:0 18px;
+    border:none;
+    border-radius:12px;
+    background:#2563eb;
+    color:white;
+    font-size:14px;
+    font-weight:600;
+    cursor:pointer;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    transition:0.3s;
+}
+
+#addStockBtn:hover{
+    background:#1d4ed8;
+    transform:translateY(-2px);
+}

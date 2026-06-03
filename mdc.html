@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medicines</title>
+    <link rel="stylesheet" type="text/css" href="/css/mdc.css">
+    <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+</head>
+<body>
+
+    <nav id="navbar">
+        <div id="leftNavbar">
+            <div id="logoBox">
+                <img src="/assets/logo.png" id="logoImage">
+            </div>
+            <h2 id="welcomeText">
+                Welcome
+            </h2>
+        </div>
+        <div id="centerNavbar">
+            <div class="navItem activeNav">
+                <i class="fa-solid fa-chart-line"></i>
+                <span>Dashboard</span>
+            </div>
+            <div class="navItem">
+                <i class="fa-solid fa-capsules"></i>
+                <span>Medicines</span>
+            </div>
+            <div class="navItem">
+                <i class="fa-solid fa-cart-shopping"></i>
+                <span>Orders</span>
+            </div>
+            <div class="navItem">
+                <i class="fa-solid fa-box-open"></i>
+                <span>Stock</span>
+            </div>
+            <div class="navItem">
+                <i class="fa-solid fa-truck"></i>
+                <span>Delivery</span>
+            </div>
+            <div class="navItem">
+                <i class="fa-solid fa-credit-card"></i>
+                <span>Payments</span>
+            </div>
+            <div class="navItem">
+                <i class="fa-solid fa-star"></i>
+                <span>Reviews</span>
+            </div>
+        </div>
+        <div id="rightNavbar">
+            <button id="logoutBtn">
+                <i class="fa-solid fa-right-from-bracket"></i>
+            </button>
+        </div>
+    </nav>
+
+    <div id="mainContainer">
+        <div id="medicineSection">
+            <div id="medicineTopBar">
+                <button id="addMedicineBtn">
+                    <i class="fa-solid fa-plus"></i>
+                    Add Medicine
+                </button>
+            </div>
+            <div id="medicineTableContainer">
+                <table id="medicineTable">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Medicine</th>
+                            <th>Type</th>
+                            <th>Category</th>
+                            <th>MRP</th>
+                            <th>Selling</th>
+                            <th>Stock</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="medicineTableBody">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div id="medicineModal">
+        <div id="medicineModalBox">
+            <div id="medicineModalHeader">
+                <h2>Add Medicine (Direct input through excel file, Input will be found at bottom)</h2>
+                <button id="closeMedicineModal">
+                    X
+                </button>
+            </div>
+            <form id="medicineForm">
+                <div id="medicineFormGrid">
+                    <div class="medicineInputGroup">
+                        <label>Medicine Name</label>
+                        <input type="text" id="medicine_name">
+                    </div>
+                    <div class="medicineInputGroup">
+                        <label>Generic Name</label>
+                        <input type="text" id="generic_name">
+                    </div>
+                    <div class="medicineInputGroup">
+                        <label>Brand Name</label>
+                        <input type="text" id="brand_name">
+                    </div>
+                    <div class="medicineInputGroup">
+                        <label>Medicine Type</label>
+                        <select id="medicine_type">
+                            <option>Tablet</option>
+                            <option>Capsule</option>
+                            <option>Syrup</option>
+                            <option>Injection</option>
+                            <option>Cream</option>
+                            <option>Drops</option>
+                            <option>Powder</option>
+                            <option>Other</option>
+                        </select>
+                    </div>
+                    <div class="medicineInputGroup">
+                        <label>Category</label>
+                        <input type="text" id="category">
+                    </div>
+                    <div class="medicineInputGroup">
+                        <label>Manufacturer</label>
+                        <input type="text" id="manufacturer">
+                    </div>
+                    <div class="medicineInputGroup fullWidth">
+                        <label>Composition</label>
+                        <textarea id="composition"></textarea>
+                    </div>
+                    <div class="medicineInputGroup">
+                        <label>MRP</label>
+                        <input type="text" id="mrp">
+                    </div>
+                    <div class="medicineInputGroup">
+                        <label>Selling Price</label>
+                        <input type="text" id="selling_price">
+                    </div>
+                    <div class="medicineInputGroup">
+                        <label>GST %</label>
+                        <input type="text" id="gst_percentage">
+                    </div>
+                    <div class="medicineInputGroup">
+                        <label>Discount %</label>
+                        <input type="text" id="discount_percentage">
+                    </div>
+                    <div class="medicineInputGroup">
+                        <label>Stock Quantity</label>
+                        <input type="text" id="stock_quantity">
+                    </div>
+                    <div class="medicineInputGroup">
+                        <label>Minimum Stock Alert</label>
+                        <input type="text" id="minimum_stock_alert">
+                    </div>
+                    <div class="medicineInputGroup">
+                        <label>Batch Number</label>
+                        <input type="text" id="batch_number">
+                    </div>
+                    <div class="medicineInputGroup">
+                        <label>Manufacturing Date</label>
+                        <input type="date" id="manufacturing_date">
+                    </div>
+                    <div class="medicineInputGroup">
+                        <label>Expiry Date</label>
+                        <input type="date" id="expiry_date">
+                    </div>
+                    <div class="medicineInputGroup">
+                        <label>Prescription Required</label>
+                        <select id="prescription_required">
+                            <option>Yes</option>
+                            <option>No</option>
+                        </select>
+                    </div>
+                    <div class="medicineInputGroup">
+                        <label>Schedule Type</label>
+                        <select id="schedule_type">
+                            <option>OTC</option>
+                            <option>H</option>
+                            <option>H1</option>
+                            <option>X</option>
+                        </select>
+                    </div>
+                    <div class="medicineInputGroup fullWidth">
+                        <label>Uses Info</label>
+                        <textarea id="uses_info"></textarea>
+                    </div>
+                    <div class="medicineInputGroup fullWidth">
+                        <label>Dosage Instructions</label>
+                        <textarea id="dosage_instructions"></textarea>
+                    </div>
+                    <div class="medicineInputGroup fullWidth">
+                        <label>Side Effects</label>
+                        <textarea id="side_effects"></textarea>
+                    </div>
+                    <div class="medicineInputGroup fullWidth">
+                        <label>Warnings</label>
+                        <textarea id="warnings"></textarea>
+                    </div>
+                    <div class="medicineInputGroup fullWidth">
+                        <label>Storage Instructions</label>
+                        <textarea id="storage_instructions"></textarea>
+                    </div>
+                    <div class="medicineInputGroup">
+                        <label>Delivery Available</label>
+                        <select id="delivery_available">
+                            <option>Yes</option>
+                            <option>No</option>
+                        </select>
+                    </div>
+                    <div class="medicineInputGroup">
+                        <label>Delivery Charge</label>
+                        <input type="text" id="delivery_charge">
+                    </div>
+                    <div class="medicineInputGroup">
+                        <label>Medicine Image</label>
+                        <input type="file" id="medicine_image">
+                    </div>
+                    <div class="medicineInputGroup">
+                        <label>Barcode Number</label>
+                        <input type="text" id="barcode_number">
+                    </div>
+                    <div class="medicineInputGroup">
+                        <label>Status</label>
+                        <select id="medicine_status">
+                            <option>Active</option>
+                            <option>Out Of Stock</option>
+                            <option>Discontinued</option>
+                        </select>
+                    </div>
+                    <div class="medicineInputGroup">
+                        <label>Featured Medicine</label>
+                        <select id="featured_medicine">
+                            <option>Yes</option>
+                            <option>No</option>
+                        </select>
+                    </div>
+                    <div class="medicineInputGroup fullWidth">
+                        <label>Upload Excel / CSV</label>
+                        <input type="file" id="medicine_excel_file" accept=".csv,.xlsx,.xls">
+                    </div>
+                </div>
+                <button type="submit" id="saveMedicineBtn">
+                    Save Medicine
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <script src="/js/mdc.js"></script>
+</body>
+</html>

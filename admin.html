@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin</title>
+  <link rel="stylesheet" type="text/css" href="/css/admin.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.31/jspdf.plugin.autotable.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+</head>
+<body>
+
+  <nav id="navbar">
+      <div id="leftNavbar">
+          <div id="logoBox">
+              <img id="logoImage" src="/assets/logo.png" alt="Logo">
+          </div>
+          <h1 id="welcomeText">Welcome</h1>
+      </div>
+
+      <div id="menu">
+          <div class="menuItem active" id="dashboardBtn">
+              <i class="fa-solid fa-chart-line"></i>
+              <span>Dashboard</span>
+          </div>
+          <div class="menuItem" id="usersBtn">
+              <i class="fa-solid fa-users"></i>
+              <span>Users</span>
+          </div>
+          <div class="menuItem" id="vendorsBtn">
+              <i class="fa-solid fa-store"></i>
+              <span>Vendors</span>
+          </div>
+          <div class="menuItem" id="bookingsBtn">
+              <i class="fa-solid fa-calendar-check"></i>
+              <span>Bookings</span>
+          </div>
+          <div class="menuItem" id="ordersBtn">
+              <i class="fa-solid fa-box"></i>
+              <span>Orders</span>
+          </div>
+          <div class="menuItem" id="revenueBtn">
+              <i class="fa-solid fa-indian-rupee-sign"></i>
+              <span>Revenue</span>
+          </div>
+          <div class="menuItem" id="paymentBtn">
+              <i class="fa-solid fa-credit-card"></i>
+              <span>Payment</span>
+          </div>
+          <div class="menuItem" id="productsBtn">
+              <i class="fa-solid fa-boxes-stacked"></i>
+              <span>
+                  Products
+              </span>
+          </div>
+          <div class="menuItem" id="commissionBtn">
+              <i class="fa-solid fa-percent"></i>
+              <span>Commission</span>
+          </div>
+      </div>
+      <div id="rightNavbar">
+
+          <button id="logoutBtn" onclick="logout()">
+              <i class="fa-solid fa-right-from-bracket"></i>
+              
+            </button>
+      </div>
+  </nav>
+
+  <div id="mainContent">
+
+    <!-- ================= DASHBOARD ================= -->
+
+<div id="dashboardSection">
+    <div id="dashboardCards">
+        <div class="dashCard">
+            <h3>Total Users</h3>
+            <h1 id="totalUsers">0</h1>
+        </div>
+        <div class="dashCard">
+            <h3>Total Vendors</h3>
+            <h1 id="totalVendors">0</h1>
+        </div>
+        <div class="dashCard">
+            <h3>Hospitals</h3>
+            <h1 id="totalHospitals">0</h1>
+        </div>
+        <div class="dashCard">
+            <h3>Labs</h3>
+            <h1 id="totalLabs">0</h1>
+        </div>
+        <div class="dashCard">
+            <h3>Ambulances</h3>
+            <h1 id="totalAmbulances">0</h1>
+        </div>
+        <div class="dashCard">
+            <h3>Insurance Vendors</h3>
+            <h1 id="totalInsurance">0</h1>
+        </div>
+        <div class="dashCard">
+            <h3>Medicine Vendors</h3>
+            <h1 id="totalMedicines">0</h1>
+        </div>
+        <div class="dashCard">
+            <h3>Equipment Vendors</h3>
+            <h1 id="totalEquipments">0</h1>
+        </div>
+        <div class="dashCard">
+            <h3>Total Revenue</h3>
+            <h1 id="dashboardRevenue">₹0</h1>
+        </div>
+        <div class="dashCard">
+            <h3>Total Commission</h3>
+            <h1 id="dashboardCommission">₹0</h1>
+        </div>
+        <div class="dashCard">
+            <h3>Total Beds</h3>
+            <h1 id="totalBeds">0</h1>
+        </div>
+        <div class="dashCard">
+            <h3>Available Beds</h3>
+            <h1 id="availableBeds">0</h1>
+        </div>
+    </div>
+
+    <div id="chartsGrid">
+        <div class="chartWrapper">
+            <canvas id="revenueChart"></canvas>
+        </div>
+        <div class="chartWrapper">
+            <canvas id="vendorChart"></canvas>
+        </div>
+        <div class="chartWrapper">
+            <canvas id="userTypeRevenueChart"></canvas>
+        </div>
+        <div class="chartWrapper">
+            <canvas id="bookingChart"></canvas>
+        </div>
+        <div class="chartWrapper">
+            <canvas id="bedsChart"></canvas>
+        </div>
+    </div>
+</div>
+
+    <div id="vendorsSection" style="display:none;">
+      <div id="topBar">
+          <input 
+              type="text"
+              id="vendorSearch"
+              placeholder="Search vendors..."
+          >
+      </div>
+      <div id="tableContainer">
+          <table id="vendorTable">
+              <thead>
+                  <tr>
+                      <th>Profile</th>
+                      <th>Name</th>
+                      <th>Email / Contact</th>
+                      <th>User Type</th>
+                      <th>Revenue</th>
+                      <th>Status</th>
+                      <th>Actions</th>
+                      <th>Invoice</th>
+                  </tr>
+              </thead>
+              <tbody id="vendorTableBody">
+              </tbody>
+          </table>
+      </div>
+    </div>
+
+<div id="usersSection" style="display:none;">
+    <div id="topBar">
+        <input 
+            type="text"
+            id="userSearch"
+            placeholder="Search users..."
+        >
+    </div>
+    <div id="tableContainer">
+        <table id="usersTable">
+            <thead>
+                <tr>
+                    <th>Profile</th>
+                    <th>Name</th>
+                    <th>Email / Contact</th>
+                    <th>User Type</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody id="usersTableBody">
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div id="bookingsSection" style="display:none;">
+
+    <div id="tableContainer">
+
+        <table class="adminTable">
+
+            <thead>
+
+                <tr>
+
+                    <th>ID</th>
+                    <th>User</th>
+                    <th>Type</th>
+                    <th>Amount</th>
+                    <th>Status</th>
+                    <th>Date</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody id="bookingsTableBody">
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+<div id="ordersSection" style="display:none;">
+
+    <div id="tableContainer">
+
+        <table class="adminTable">
+
+            <thead>
+
+                <tr>
+
+                    <th>ID</th>
+                    <th>User</th>
+                    <th>Type</th>
+                    <th>Amount</th>
+                    <th>Payment</th>
+                    <th>Status</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody id="ordersTableBody">
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+<div id="paymentsSection" style="display:none;">
+
+    <div id="paymentTopBar">
+
+        <h2 id="totalRevenue">
+
+            Total Revenue : ₹0
+
+        </h2>
+
+    </div>
+
+    <div id="tableContainer">
+
+        <table class="adminTable">
+
+            <thead>
+
+                <tr>
+
+                    <th>ID</th>
+                    <th>User</th>
+                    <th>Payment For</th>
+                    <th>Method</th>
+                    <th>Transaction</th>
+                    <th>Amount</th>
+                    <th>Status</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody id="paymentsTableBody">
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+<div id="productsSection" style="display:none;">
+
+    <div id="tableContainer">
+
+        <table class="adminTable">
+
+            <thead>
+
+                <tr>
+
+                    <th>ID</th>
+                    <th>Image</th>
+                    <th>Product</th>
+                    <th>Vendor</th>
+                    <th>Price</th>
+                    <th>Stock</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody id="productsTableBody">
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+<!-- ================= COMMISSION ================= -->
+
+<div id="commissionSection" style="display:none;">
+
+    <div id="tableContainer">
+
+        <table class="adminTable">
+
+            <thead>
+
+                <tr>
+
+                    <th>User Type</th>
+
+                    <th>Commission %</th>
+
+                    <th>Action</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody id="commissionTableBody">
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+<!-- ================= REVENUE ================= -->
+
+<div id="revenueSection" style="display:none;">
+
+    <div id="revenueCards">
+
+        <div class="revenueCard">
+            <h3>Total Incoming</h3>
+            <h1 id="incomingAmount">
+                ₹0
+            </h1>
+        </div>
+
+        <div class="revenueCard">
+            <h3>Total Paid To Vendors</h3>
+            <h1 id="vendorPaidAmount">
+                ₹0
+            </h1>
+        </div>
+
+        <div class="revenueCard">
+            <h3>Total Platform Revenue</h3>
+            <h1 id="platformRevenueAmount">
+                ₹0
+            </h1>
+        </div>
+
+    </div>
+
+    <div id="tableContainer">
+
+        <table class="adminTable">
+
+            <thead>
+
+                <tr>
+
+                    <th>Vendor</th>
+                    <th>User Type</th>
+                    <th>Total Incoming</th>
+                    <th>Commission</th>
+                    <th>Vendor Amount</th>
+                    <th>Paid</th>
+                    <th>Remaining</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody id="revenueTableBody">
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+  </div>
+
+    <div id="vendorDetailsModal">
+        <div id="vendorDetailsBox">
+            <div id="vendorDetailsHeader">
+                <h2>Vendor Details</h2>
+                <button id="closeVendorModal">
+                    X
+                </button>
+            </div>
+            <div id="vendorDetailsContent">
+            </div>
+        </div>
+    </div>
+
+  <script src="/js/admin.js"></script>
+</body>
+</html>

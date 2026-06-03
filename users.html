@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HospikareUsers</title>
+    <link rel="stylesheet" href="/css/users.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+</head>
+<body>
+
+    <nav class="navbar">
+    <div class="logoSection">
+        <img src="/assets/logo.png" alt="HospiKare Logo">
+    </div>
+    <div class="navRight">
+        <button class="menuBtn" id="menuBtn">
+            <i class="fa-solid fa-bars"></i>
+        </button>
+    </div>
+    </nav>
+
+    <div class="sidebar" id="sidebar">
+        <div class="sidebarTop">
+            <h2>Menu</h2>
+            <button class="closeBtn" id="closeBtn">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+        <div class="sidebarLinks">
+            <a href="#heroSection">
+                <i class="fa-solid fa-house"></i>
+                Home
+            </a>
+            <a href="#featuredHospitalSection">
+                <i class="fa-solid fa-hospital"></i>
+                Hospitals
+            </a>
+            <a href="#ambulanceSection">
+                <i class="fa-solid fa-truck-medical"></i>
+                Ambulance
+            </a>
+            <a href="#medicineSection">
+                <i class="fa-solid fa-capsules"></i>
+                Medicines
+            </a>
+            <a href="#insuranceSection">
+                <i class="fa-solid fa-file-shield"></i>
+                Insurance
+            </a>
+            <a href="#labsSection">
+                <i class="fa-solid fa-stethoscope"></i>
+                Lab Tests
+            </a>
+            <a href="#equipmentSection">
+                <i class="fa-solid fa-laptop-medical"></i>
+                Medical Equipments
+            </a>
+            <a href="act.html">
+                <i class="fa-solid fa-chart-line"></i>
+                Acitivites
+            </a>
+        </div>
+    </div>
+
+    <div class="overlay" id="overlay"></div>
+
+    <section class="heroSection" id="heroSection">
+        <div class="trustBadge">
+            <span></span>
+            Trusted by 10,000+ patients
+        </div>
+        <h1>
+            HospiKare - Where Health Meets Access
+        </h1>
+        <p>
+            Find hospitals, book ambulances, order medicines, and access healthcare services — all in one place.
+        </p>
+        <div class="searchBox">
+            <div class="searchInput">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="text" placeholder="Search hospitals, tests, ambulance...">
+            </div>
+            <div class="locationInput">
+                <i class="fa-solid fa-location-dot"></i>
+                <input type="text" placeholder="Location">
+            </div>
+            <button>
+                Search
+            </button>
+        </div>
+    </section>
+
+    <section class="servicesSection">
+        <div class="servicesHeading">
+            <span>Our Services</span>
+            <h2>
+                Healthcare Services We Provide
+            </h2>
+            <p>
+                Access hospitals, ambulance booking, medicines, insurance, lab tests and many more healthcare services from one platform.
+            </p>
+        </div>
+        <div class="servicesContainer">
+            <div class="serviceCard">
+                <div class="serviceIcon">
+                    <i class="fa-solid fa-hospital"></i>
+                </div>
+                <h3>Hospitals</h3>
+                <p>
+                    Find nearby hospitals, view facilities, doctors, beds and book appointments easily.
+                </p>
+                <a href="#">
+                    <button>
+                        Explore
+                    </button>
+                </a>
+            </div>
+            <div class="serviceCard">
+                <div class="serviceIcon">
+                    <i class="fa-solid fa-truck-medical"></i>
+                </div>
+                <h3>Ambulance</h3>
+                <p>
+                    Book emergency ambulance services quickly with real-time availability and support.
+                </p>
+                <button>
+                    Explore
+                </button>
+            </div>
+            <div class="serviceCard">
+                <div class="serviceIcon">
+                    <i class="fa-solid fa-capsules"></i>
+                </div>
+                <h3>Medicines</h3>
+                <p>
+                    Order medicines online from trusted medical stores with fast delivery support.
+                </p>
+                <button>
+                    Explore
+                </button>
+            </div>
+            <div class="serviceCard">
+                <div class="serviceIcon">
+                    <i class="fa-solid fa-file-shield"></i>
+                </div>
+                <h3>Insurance</h3>
+                <p>
+                    Compare and purchase health insurance plans with claim and policy support.
+                </p>
+                <button>
+                    Explore
+                </button>
+            </div>
+            <div class="serviceCard">
+                <div class="serviceIcon">
+                    <i class="fa-solid fa-flask"></i>
+                </div>
+                <h3>Lab Tests</h3>
+                <p>
+                    Book pathology and diagnostic lab tests online with home sample collection.
+                </p>
+                <button>
+                    Explore
+                </button>
+            </div>
+            <div class="serviceCard">
+                <div class="serviceIcon">
+                    <i class="fa-solid fa-laptop-medical"></i>
+                </div>
+                <h3>Medical Equipments</h3>
+                <p>
+                    Purchase or rent healthcare and medical equipments from verified vendors.
+                </p>
+                <button>
+                    Explore
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <section class="featuredHospitalSection" id="featuredHospitalSection">
+        <div class="featuredHeading">
+            <h2>
+                Hospitals Near You
+            </h2>
+        </div>
+        <div class="featuredHospitalContainer" id="featuredHospitalContainer">
+        </div>
+    </section>
+
+    <section class="ambulanceSection" id="ambulanceSection">
+        <div class="ambulanceHeading">
+            <h2>
+                Available Ambulances
+            </h2>
+        </div>
+        <div class="ambulanceContainer" id="ambulanceContainer">
+        </div>
+    </section>
+
+    <section class="labsSection" id="labsSection">
+    <div class="labsHeading">
+        <h2>
+            Lab Tests
+        </h2>
+        <p>
+            Book tests from top labs at best prices
+        </p>
+    </div>
+    <div class="labsContainer" id="labsContainer">
+    </div>
+    </section>
+
+    <section class="insuranceSection" id="insuranceSection">
+        <div class="insuranceHeading">
+            <h2>
+                Health Insurance Plans
+            </h2>
+            <p>
+                Compare plans and find the right coverage for you
+            </p>
+        </div>
+        <div class="insuranceContainer" id="insuranceContainer">
+        </div>
+    </section>
+
+    <section class="medicineSection" id="medicineSection">
+        <div class="medicineTop">
+            <div>
+                <h2>
+                    Medicines
+                </h2>
+            </div>
+            <a href="usercart.html">
+                <button class="medicineCartBtn">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                    Cart
+                </button>
+            </a>
+        </div>
+        <div class="medicineSearch">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" placeholder="Search medicines...">
+        </div>
+        <div class="medicineContainer" id="medicineContainer">
+        </div>
+    </section>
+
+    <section class="equipmentSection" id="equipmentSection">
+        <div class="equipmentTop">
+            <div>
+                <h2>
+                    Medical Equipments
+                </h2>
+                <p>
+                    Buy & rent advanced healthcare equipments
+                </p>
+            </div>
+            <a href="usercart.html">
+                <button class="equipmentCartBtn">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                    Cart
+                </button>
+            </a>
+        </div>
+        <div class="equipmentContainer" id="equipmentContainer">
+        </div>
+    </section>
+
+    <section class="emergency-section">
+        <div class="emergency-box">
+            <div class="emergency-left">
+                <h2>Emergency?</h2>
+                <p>
+                    Get immediate help — call emergency services or book an ambulance now.
+                </p>
+            </div>
+            <div class="emergency-right">
+                <button class="call-btn">
+                    <i class="fa-solid fa-phone"></i>
+                    Call 102
+                </button>
+                <button class="ambulance-btn">
+                    <i class="fa-solid fa-truck-medical"></i>
+                    Book Ambulance
+                </button>
+            </div>
+        </div>
+    
+    </section>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <!-- Logo + About -->
+            <div class="footer-col">
+                <img src="./assets/logo.png" alt="Logo" class="footer-logo">
+                <p>
+                    Where Health Meets Access. Your one-step platform for all healthcare needs.
+                </p>
+            </div>
+            <!-- Services -->
+            <div class="footer-col">
+                <h3>Services</h3>
+                <a href="#">Hospitals</a>
+                <a href="#">Ambulance</a>
+                <a href="#">Lab Tests</a>
+                <a href="#">Medicines</a>
+            </div>
+            <!-- Company -->
+            <div class="footer-col">
+                <h3>Company</h3>
+                <a href="#">About Us</a>
+                <a href="#">Contact</a>
+                <a href="#">Careers</a>
+                <a href="#">Privacy Policy</a>
+            </div>
+            <!-- Contact -->
+            <div class="footer-col">
+                <h3>Contact</h3>
+                <p><i class="fa-solid fa-phone"></i> +91 1800-XXX-XXXX</p>
+                <p><i class="fa-solid fa-envelope"></i> support@HospiKare.in</p>
+                <p><i class="fa-solid fa-location-dot"></i> Mumbai, India</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            © 2026 HospiKare. All rights reserved.
+        </div>
+    </footer>
+
+    <div class="authOverlay" id="authOverlay">
+    <div class="authBox">
+        <div class="authTabs">
+            <button class="authTab activeTab" id="loginTab">
+                Login
+            </button>
+            <button class="authTab" id="registerTab">
+                Register
+            </button>
+        </div>
+
+        <!-- LOGIN FORM -->
+        <form id="loginForm" class="authForm">
+            <h2>Welcome Back</h2>
+            <input type="email" id="loginEmail" placeholder="Email">
+            <input type="password" id="loginPassword" placeholder="Password">
+            <button type="submit">
+                Login
+            </button>
+        </form>
+
+        <!-- REGISTER FORM -->
+<form id="registerForm" class="authForm hiddenForm">
+    <h2>Create Account</h2>
+    <div class="formGrid">
+        <input type="text" id="regName" placeholder="Full Name">
+        <input type="email" id="regEmail" placeholder="Email">
+        <input type="text" id="regPhone" placeholder="Phone Number">
+        <input type="password" id="regPassword" placeholder="Password">
+        <select id="regGender">
+            <option value="">Select Gender</option>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+            <option value="other">Other</option>
+        </select>
+        <input type="date" id="regDob">
+        <select id="regBloodGroup">
+            <option value="">Blood Group</option>
+            <option>A+</option>
+            <option>A-</option>
+            <option>B+</option>
+            <option>B-</option>
+            <option>AB+</option>
+            <option>AB-</option>
+            <option>O+</option>
+            <option>O-</option>
+        </select>
+        <input type="file" id="regProfilePhoto">
+        <textarea id="regAddress" class="fullWidth" placeholder="Address"></textarea>
+        <input type="text" id="regCity" placeholder="City">
+        <input type="text" id="regState" placeholder="State">
+        <input type="text" id="regPincode" class="fullWidth" placeholder="Pincode">
+        <input type="text" id="usr_add" placeholder="Location(AutoFecth)" readonly>
+        <input type="text" id="usr_crdnt" placeholder="Coordinates(autofetch)" readonly>
+        <button type="submit" class="fullWidth">
+            Register
+        </button>
+    </div>
+</form>
+    </div>
+    </div>
+
+<div class="ambulanceBookingModal"
+    id="ambulanceBookingModal">
+    <div class="ambulanceBookingBox">
+        <div class="ambulanceBookingTop">
+            <h2>
+                Book Ambulance
+            </h2>
+            <button id="closeAmbulanceModal">
+                X
+            </button>
+        </div>
+        <form id="ambulanceBookingForm">
+            <div class="ambulanceInputGroup">
+                <label>
+                    Patient Name
+                </label>
+                <input
+                    type="text"
+                    id="patient_name"
+                >
+            </div>
+            <div class="ambulanceInputGroup">
+                <label>
+                    Patient Condition
+                </label>
+                <textarea
+                    id="patient_condition"
+                ></textarea>
+            </div>
+            <div class="ambulanceInputGroup">
+                <label>
+                    Pickup Address
+                </label>
+                <textarea
+                    id="pickup_address"
+                ></textarea>
+            </div>
+            <div class="ambulanceInputGroup">
+                <label>
+                    Destination Address
+                </label>
+                <textarea
+                    id="destination_address"
+                ></textarea>
+            </div>
+            <div class="ambulanceInputGroup">
+                <label>
+                    Booking Date
+                </label>
+                <input
+                    type="datetime-local"
+                    id="booking_date"
+                >
+            </div>
+            <div class="ambulanceFareBox">
+
+    <span>
+        Estimated Fare
+    </span>
+
+    <h3 id="ambulanceFare">
+        ₹0
+    </h3>
+
+</div>
+            <button
+                type="submit"
+                class="confirmAmbulanceBtn">
+                Confirm Booking
+            </button>
+        </form>
+    </div>
+</div>
+
+<!-- LAB TEST BOOKING MODAL -->
+
+<div class="labBookingModal" id="labBookingModal">
+
+    <div class="labBookingBox">
+
+        <div class="labBookingTop">
+            <h2>Book Lab Test</h2>
+
+            <button id="closeLabModal">
+                X
+            </button>
+        </div>
+
+        <form id="labBookingForm">
+
+            <div class="labInputGroup">
+                <label>Test Name</label>
+
+                <input
+                    type="text"
+                    id="lab_test_name"
+                    readonly
+                >
+            </div>
+
+            <div class="labInputGroup">
+                <label>Patient Name</label>
+
+                <input
+                    type="text"
+                    id="lab_patient_name"
+                >
+            </div>
+
+            <div class="labInputGroup">
+                <label>Sample Collection</label>
+
+                <select id="sample_collection_type">
+                    <option value="lab">
+                        Visit Lab
+                    </option>
+
+                    <option value="home">
+                        Home Collection
+                    </option>
+                </select>
+            </div>
+
+            <div class="labInputGroup">
+                <label>Booking Date</label>
+
+                <input
+                    type="date"
+                    id="lab_booking_date"
+                >
+            </div>
+
+            <div class="labFareBox">
+                <span>Total Amount</span>
+
+                <h3 id="labTestAmount">
+                    ₹0
+                </h3>
+            </div>
+
+            <button
+                type="submit"
+                class="confirmLabBtn"
+            >
+                Proceed Booking
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+<div class="insuranceModal"id="insuranceModal">
+    <div class="insuranceModalBox">
+        <div class="insuranceModalTop">
+            <h2>
+                Buy Insurance Plan
+            </h2>
+            <button id="closeInsuranceModal">
+                X
+            </button>
+        </div>
+        <form id="insurancePurchaseForm">
+            <div class="insuranceInputGroup">
+                <label>
+                    Plan Name
+                </label>
+                <input
+                    type="text"
+                    id="insurance_plan_name"
+                    readonly
+                >
+            </div>
+            <div class="insuranceInputGroup">
+                <label>
+                    Claim Price
+                </label>
+                <input
+                    type="text"
+                    id="insurance_claim_price"
+                    readonly
+                >
+            </div>
+<div class="insuranceInputGroup">
+    <label>
+        Monthly Premium
+    </label>
+
+    <input
+        type="text"
+        id="insurance_price"
+        readonly
+    >
+</div>
+
+<div class="insuranceInputGroup">
+    <label>
+        Plan Duration
+    </label>
+
+    <select id="insurance_duration">
+        <option value="1">
+            Monthly
+        </option>
+
+        <option value="3">
+            3 Months
+        </option>
+
+        <option value="6">
+            6 Months
+        </option>
+
+        <option value="12">
+            Yearly
+        </option>
+    </select>
+</div>
+            <div class="insuranceFareBox">
+                <span>
+                    Total Premium
+                </span>
+                <h3 id="insuranceTotalAmount">
+                    ₹0
+                </h3>
+            </div>
+            <button type="submit" class="buyInsuranceBtn">
+                Proceed Payment
+            </button>
+        </form>
+    </div>
+</div>
+
+<div class="productBuyModal" id="productBuyModal">
+
+    <div class="productBuyBox">
+
+        <div class="productBuyTop">
+
+            <h2 id="productModalTitle">
+                Buy Product
+            </h2>
+
+            <button id="closeProductModal">
+                X
+            </button>
+
+        </div>
+
+        <form id="productPurchaseForm">
+
+            <div class="productInputGroup">
+
+                <label>
+                    Product Name
+                </label>
+
+                <input
+                    type="text"
+                    id="buy_product_name"
+                    readonly
+                >
+
+            </div>
+
+            <div class="productInputGroup">
+
+                <label>
+                    Brand Name
+                </label>
+
+                <input
+                    type="text"
+                    id="buy_product_brand"
+                    readonly
+                >
+
+            </div>
+
+            <div class="productInputGroup">
+
+                <label>
+                    Quantity
+                </label>
+
+                <input
+                    type="number"
+                    id="buy_quantity"
+                    value="1"
+                    min="1"
+                >
+
+            </div>
+
+            <div class="insuranceFareBox">
+
+                <span>
+                    Total Amount
+                </span>
+
+                <h3 id="productTotalAmount">
+                    ₹0
+                </h3>
+
+            </div>
+
+            <button
+                type="submit"
+                class="buyInsuranceBtn"
+            >
+                Proceed Payment
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+    <script src="/js/users.js"></script>
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+</body>
+</html>

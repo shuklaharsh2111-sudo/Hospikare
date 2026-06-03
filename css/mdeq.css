@@ -1,0 +1,972 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    background:#fff5f7;
+}
+
+#navbar{
+    width:100%;
+    height:75px;
+    background:white;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 25px;
+    box-shadow:0 2px 10px rgba(0,0,0,0.08);
+    position:sticky;
+    top:0;
+    z-index:1000;
+}
+
+#leftNavbar{
+    display:flex;
+    align-items:center;
+    gap:15px;
+}
+
+#logoBox{
+    width:90px;
+    height:50px;
+    background:#ffe4ec;
+    border-radius:12px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    overflow:hidden;
+}
+
+#logoImage{
+    width:100%;
+    height:100%;
+    object-fit:contain;
+}
+
+#welcomeText{
+    color:#ff4f87;
+    font-size:22px;
+    font-weight:700;
+}
+
+#centerNavbar{
+    display:flex;
+    align-items:center;
+    gap:15px;
+}
+
+.navItem{
+    padding:10px 16px;
+    border-radius:10px;
+    display:flex;
+    align-items:center;
+    gap:8px;
+    cursor:pointer;
+    transition:0.3s;
+    color:#444;
+    font-size:15px;
+    font-weight:600;
+}
+
+.navItem:hover{
+    background:#ffe4ec;
+    color:#ff4f87;
+}
+
+.activeNav{
+    background:#ff4f87;
+    color:white;
+}
+
+#logoutBtn{
+    padding:11px 18px;
+    border:none;
+    border-radius:10px;
+    background:#ff4f87;
+    color:white;
+    cursor:pointer;
+    font-size:15px;
+    font-weight:600;
+    display:flex;
+    align-items:center;
+    gap:8px;
+    transition:0.3s;
+}
+
+#logoutBtn:hover{
+    background:#e63e73;
+}
+
+#mainContainer{
+    width:100%;
+    padding:25px;
+}
+
+#topBar{
+    width:100%;
+    display:flex;
+    justify-content:flex-end;
+    margin-bottom:20px;
+}
+
+#addProductBtn{
+    padding:12px 18px;
+    border:none;
+    border-radius:10px;
+    background:#ff4f87;
+    color:white;
+    cursor:pointer;
+    font-size:15px;
+    font-weight:600;
+    display:flex;
+    align-items:center;
+    gap:8px;
+}
+
+#tableContainer{
+    width:100%;
+    overflow-x:auto;
+    background:white;
+    border-radius:15px;
+    padding:15px;
+    box-shadow:0 2px 10px rgba(0,0,0,0.08);
+}
+
+#productsTable{
+    width:100%;
+    border-collapse:collapse;
+}
+
+#productsTable th{
+    background:#ff4f87;
+    color:white;
+    padding:14px;
+    text-align:left;
+    font-size:15px;
+}
+
+#productsTable td{
+    padding:14px;
+    border-bottom:1px solid #f1f1f1;
+    font-size:14px;
+    color:#444;
+}
+
+#productsTable tr:hover{
+    background:#fff0f5;
+}
+
+#productModal{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,0.4);
+    display:none;
+    align-items:center;
+    justify-content:center;
+    z-index:1000;
+}
+
+#productModalBox{
+    width:90%;
+    max-width:1100px;
+    background:white;
+    border-radius:15px;
+    padding:25px;
+    max-height:90vh;
+    overflow-y:auto;
+}
+
+#productModalHeader{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-bottom:20px;
+}
+
+#closeProductModal{
+    width:35px;
+    height:35px;
+    border:none;
+    border-radius:50%;
+    background:#ff4f87;
+    color:white;
+    cursor:pointer;
+}
+
+#productFormGrid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:18px;
+}
+
+.productInputGroup{
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+}
+
+.productInputGroup label{
+    font-size:14px;
+    font-weight:600;
+    color:#444;
+}
+
+.productInputGroup input,
+.productInputGroup textarea,
+.productInputGroup select{
+    padding:12px;
+    border:1px solid #ddd;
+    border-radius:10px;
+    outline:none;
+}
+
+.productInputGroup textarea{
+    min-height:120px;
+    resize:none;
+}
+
+.fullWidth{
+    grid-column:1/3;
+}
+
+#saveProductBtn{
+    margin-top:20px;
+    width:100%;
+    padding:14px;
+    border:none;
+    border-radius:10px;
+    background:#ff4f87;
+    color:white;
+    font-size:16px;
+    cursor:pointer;
+}
+
+.productImage{
+    width:70px;
+    height:70px;
+    object-fit:cover;
+    border-radius:10px;
+}
+
+/* ================= ORDERS SECTION ================= */
+
+#ordersSection{
+    width:100%;
+    padding:20px;
+    box-sizing:border-box;
+}
+
+#ordersTopBar{
+    width:100%;
+    margin-bottom:20px;
+}
+
+#ordersTopBar h2{
+    font-size:28px;
+    font-weight:700;
+    color:#ff1493;
+}
+
+/* ================= TABLE ================= */
+
+#ordersTableContainer{
+    width:100%;
+    overflow-x:auto;
+    background:#fff;
+    border-radius:12px;
+    box-shadow:0 2px 10px rgba(0,0,0,0.08);
+}
+
+#ordersTable{
+    width:100%;
+    border-collapse:collapse;
+    min-width:1200px;
+}
+
+/* ================= TABLE HEAD ================= */
+
+#ordersTable thead{
+    background:#ff1493;
+}
+
+#ordersTable thead th{
+    color:white;
+    padding:14px;
+    text-align:left;
+    font-size:15px;
+    font-weight:600;
+    border:none;
+}
+
+/* ================= TABLE BODY ================= */
+
+#ordersTable tbody tr{
+    border-bottom:1px solid #e5e5e5;
+    transition:0.3s;
+}
+
+#ordersTable tbody tr:hover{
+    background:#fff5fb;
+}
+
+#ordersTable tbody td{
+    padding:14px;
+    font-size:14px;
+    color:#333;
+}
+
+/* ================= NO DATA ================= */
+
+#ordersTable tbody td[colspan]{
+    text-align:center;
+    padding:25px;
+    font-size:16px;
+    font-weight:600;
+    color:#777;
+}
+
+/* ================= CUSTOMERS ================= */
+
+#customersSection{
+    width:100%;
+    padding:20px;
+    box-sizing:border-box;
+}
+
+#customersTopBar{
+    margin-bottom:20px;
+}
+
+#customersTopBar h2{
+    color:#ff1493;
+    font-size:28px;
+    font-weight:700;
+}
+
+#customersTableContainer{
+    width:100%;
+    overflow-x:auto;
+    background:#fff;
+    border-radius:12px;
+    box-shadow:0 2px 10px rgba(0,0,0,0.08);
+}
+
+#customersTable{
+    width:100%;
+    border-collapse:collapse;
+    min-width:1200px;
+}
+
+#customersTable thead{
+    background:#ff1493;
+}
+
+#customersTable thead th{
+    color:#fff;
+    padding:14px;
+    text-align:left;
+    font-size:15px;
+}
+
+#customersTable tbody tr{
+    border-bottom:1px solid #eee;
+}
+
+#customersTable tbody tr:hover{
+    background:#fff5fb;
+}
+
+#customersTable tbody td{
+    padding:14px;
+    color:#333;
+    font-size:14px;
+}
+
+.customerImage{
+    width:55px;
+    height:55px;
+    border-radius:50%;
+    object-fit:cover;
+}
+
+#customersTable tbody td[colspan]{
+    text-align:center;
+    padding:25px;
+    font-size:16px;
+    font-weight:600;
+    color:#777;
+}
+
+#paymentsSection{
+    width:100%;
+    padding:20px;
+}
+
+#paymentsTopBar{
+    margin-bottom:20px;
+}
+
+#paymentsTableContainer{
+    width:100%;
+    overflow-x:auto;
+    background:#fff;
+    border-radius:14px;
+    padding:15px;
+}
+
+#paymentsTable{
+    width:100%;
+    border-collapse:collapse;
+    min-width:900px;
+}
+
+#paymentsTable th,
+#paymentsTable td{
+    padding:14px;
+    text-align:left;
+    border-bottom:1px solid #eee;
+}
+
+#paymentsTable th{
+    background:#fafafa;
+    font-weight:600;
+}
+
+/* =========================
+   DASHBOARD MAIN
+========================= */
+
+#dashboardSection{
+    width: 100%;
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    background: #f4f7fe;
+    min-height: 100vh;
+    box-sizing: border-box;
+}
+
+
+/* =========================
+   DASHBOARD CARDS
+========================= */
+
+#dashboardCards{
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(240px,1fr));
+    gap: 20px;
+}
+
+.dashboardCard{
+    background: #fff;
+    border-radius: 20px;
+    padding: 22px;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+    transition: 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.dashboardCard::before{
+    content: '';
+    position: absolute;
+    width: 140px;
+    height: 140px;
+    background: rgba(255,255,255,0.15);
+    border-radius: 50%;
+    top: -50px;
+    right: -50px;
+}
+
+.dashboardCard:hover{
+    transform: translateY(-6px);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.12);
+}
+
+.dashboardCard h2{
+    font-size: 30px;
+    margin: 0;
+    color: #111827;
+    font-weight: 700;
+}
+
+.dashboardCard p{
+    margin-top: 5px;
+    color: #6b7280;
+    font-size: 15px;
+    font-weight: 500;
+}
+
+
+/* =========================
+   CARD ICONS
+========================= */
+
+.cardIcon{
+    width: 70px;
+    height: 70px;
+    border-radius: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    color: white;
+    flex-shrink: 0;
+}
+
+.blueCard{
+    background: linear-gradient(135deg,#3b82f6,#2563eb);
+}
+
+.pinkCard{
+    background: linear-gradient(135deg,#ec4899,#db2777);
+}
+
+.purpleCard{
+    background: linear-gradient(135deg,#8b5cf6,#7c3aed);
+}
+
+.redCard{
+    background: linear-gradient(135deg,#ef4444,#dc2626);
+}
+
+
+/* =========================
+   BOTTOM TABLE SECTION
+========================= */
+
+#dashboardBottom{
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(400px,1fr));
+    gap: 25px;
+}
+
+
+/* =========================
+   TABLE BOX
+========================= */
+
+.dashboardTableBox{
+    background: #fff;
+    border-radius: 20px;
+    padding: 22px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+    overflow-x: auto;
+}
+
+.dashboardTableBox h3{
+    margin-bottom: 18px;
+    font-size: 22px;
+    color: #111827;
+    font-weight: 700;
+}
+
+
+/* =========================
+   TABLE DESIGN
+========================= */
+
+.dashboardTable{
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 500px;
+}
+
+.dashboardTable thead{
+    background: #f3f4f6;
+}
+
+.dashboardTable th{
+    padding: 15px;
+    text-align: left;
+    color: #374151;
+    font-size: 14px;
+    font-weight: 700;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.dashboardTable td{
+    padding: 16px 15px;
+    color: #4b5563;
+    font-size: 14px;
+    border-bottom: 1px solid #f1f5f9;
+}
+
+.dashboardTable tbody tr{
+    transition: 0.2s ease;
+}
+
+.dashboardTable tbody tr:hover{
+    background: #f9fafb;
+}
+
+
+/* =========================
+   STATUS BADGES
+========================= */
+
+.statusBadge{
+    padding: 8px 14px;
+    border-radius: 30px;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: capitalize;
+    display: inline-block;
+    background: #dbeafe;
+    color: #1d4ed8;
+}
+
+
+/* =========================
+   SCROLLBAR
+========================= */
+
+.dashboardTableBox::-webkit-scrollbar{
+    height: 8px;
+}
+
+.dashboardTableBox::-webkit-scrollbar-thumb{
+    background: #cbd5e1;
+    border-radius: 10px;
+}
+
+/* ==========================================
+   COMPLETE RESPONSIVE PATCH
+   320px → 4K
+========================================== */
+
+/* GLOBAL */
+
+html{
+    font-size:16px;
+    scroll-behavior:smooth;
+}
+
+img{
+    max-width:100%;
+    height:auto;
+}
+
+button,
+input,
+select,
+textarea{
+    font-family:inherit;
+}
+
+/* ==========================================
+   NAVBAR SCROLL FIX
+========================================== */
+
+#navbar{
+    overflow:hidden;
+    flex-wrap:nowrap;
+}
+
+#leftNavbar{
+    flex-shrink:0;
+    min-width:max-content;
+}
+
+#centerNavbar{
+    flex:1;
+
+    overflow-x:auto;
+    overflow-y:hidden;
+
+    white-space:nowrap;
+
+    flex-wrap:nowrap;
+
+    justify-content:flex-start;
+
+    scrollbar-width:none;
+
+    -webkit-overflow-scrolling:touch;
+}
+
+#centerNavbar::-webkit-scrollbar{
+    display:none;
+}
+
+.navItem{
+    flex:0 0 auto;
+}
+
+#rightNavbar{
+    flex-shrink:0;
+}
+
+/* ==========================================
+   TABLES
+========================================== */
+
+#productsTable,
+#ordersTable,
+#customersTable,
+#paymentsTable,
+.dashboardTable{
+    min-width:900px;
+}
+
+#tableContainer,
+#ordersTableContainer,
+#customersTableContainer,
+#paymentsTableContainer,
+.dashboardTableBox{
+    overflow-x:auto;
+    -webkit-overflow-scrolling:touch;
+}
+
+/* ==========================================
+   MODAL FORM
+========================================== */
+
+#productModalBox{
+    overflow-y:auto;
+    max-height:90vh;
+}
+
+/* ==========================================
+   ULTRA WIDE
+========================================== */
+
+@media (min-width:2560px){
+
+    #navbar{
+        padding:0 70px;
+    }
+
+    #welcomeText{
+        font-size:30px;
+    }
+
+    .navItem{
+        font-size:17px;
+        padding:12px 24px;
+    }
+
+    #mainContainer{
+        padding:50px;
+    }
+}
+
+/* ==========================================
+   DESKTOP
+========================================== */
+
+@media (max-width:1440px){
+
+    #mainContainer{
+        padding:20px;
+    }
+}
+
+/* ==========================================
+   TABLET
+========================================== */
+
+@media (max-width:1024px){
+
+    #navbar{
+        padding:0 10px;
+        gap:10px;
+    }
+
+    #logoBox{
+        width:75px;
+        height:40px;
+    }
+
+    #welcomeText{
+        font-size:14px;
+
+        max-width:120px;
+
+        overflow:hidden;
+        text-overflow:ellipsis;
+        white-space:nowrap;
+    }
+
+    .navItem{
+        font-size:12px;
+        padding:10px 12px;
+    }
+
+    #logoutBtn{
+        font-size:12px;
+        padding:10px 12px;
+    }
+
+    #productFormGrid{
+        grid-template-columns:1fr;
+    }
+
+    .fullWidth{
+        grid-column:auto;
+    }
+
+    #dashboardBottom{
+        grid-template-columns:1fr;
+    }
+}
+
+/* ==========================================
+   MOBILE
+========================================== */
+
+@media (max-width:768px){
+
+    #navbar{
+        height:65px;
+        padding:0 8px;
+    }
+
+    #logoBox{
+        width:60px;
+        height:30px;
+    }
+
+    #welcomeText{
+        display:block;
+
+        font-size:12px;
+
+        max-width:80px;
+
+        overflow:hidden;
+        text-overflow:ellipsis;
+        white-space:nowrap;
+    }
+
+    .navItem{
+        font-size:11px;
+        padding:8px 10px;
+    }
+
+    .navItem i{
+        font-size:11px;
+    }
+
+    #logoutBtn{
+        font-size:11px;
+        padding:8px 10px;
+    }
+
+    #mainContainer{
+        padding:12px;
+    }
+
+    #dashboardCards{
+        grid-template-columns:1fr;
+    }
+
+    .dashboardCard{
+        padding:18px;
+    }
+
+    .dashboardCard h2{
+        font-size:22px;
+    }
+
+    #ordersTopBar,
+    #customersTopBar,
+    #topBar{
+        flex-direction:column;
+        align-items:flex-start;
+        gap:10px;
+    }
+
+    #productModalBox{
+        padding:15px;
+    }
+}
+
+/* ==========================================
+   SMALL MOBILE
+========================================== */
+
+@media (max-width:480px){
+
+    #navbar{
+        height:60px;
+        padding:0 5px;
+    }
+
+    #logoBox{
+        width:50px;
+        height:28px;
+    }
+
+    #welcomeText{
+        font-size:10px;
+        max-width:60px;
+    }
+
+    .navItem{
+        font-size:10px;
+        padding:8px;
+    }
+
+    .navItem i{
+        display:none;
+    }
+
+    #logoutBtn{
+        font-size:10px;
+        padding:8px;
+    }
+
+    #mainContainer{
+        padding:10px;
+    }
+
+    .dashboardCard{
+        flex-direction:column;
+        text-align:center;
+    }
+
+    .cardIcon{
+        width:55px;
+        height:55px;
+        font-size:20px;
+    }
+
+    .productImage{
+        width:55px;
+        height:55px;
+    }
+}
+
+/* ==========================================
+   EXTRA SMALL
+========================================== */
+
+@media (max-width:320px){
+
+    #welcomeText{
+        font-size:9px;
+        max-width:50px;
+    }
+
+    .navItem{
+        font-size:9px;
+        padding:6px;
+    }
+
+    #logoutBtn{
+        font-size:9px;
+        padding:6px;
+    }
+
+    #mainContainer{
+        padding:8px;
+    }
+}

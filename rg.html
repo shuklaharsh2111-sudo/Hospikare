@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login/Register</title>
+    <link rel="stylesheet" type="text/css" href="/css/rg.css">
+</head>
+<body>
+
+    <!-- LOGIN FORM -->
+    <div class="container" id="loginForm">
+        <img src="/assets/logo.png" alt="Logo" class="logo">
+        <h2>Login</h2>
+        <form novalidate>
+            <div class="input-group">
+                <label>Email or Contact</label>
+                <input type="text" placeholder="Enter email or phone" required>
+            </div>
+            <div class="input-group">
+                <label>Password</label>
+                <input type="password" placeholder="Enter password" required>
+            </div>
+            <button type="submit" class="btn">Login</button>
+        </form>
+        <p class="switch-text">
+            Do not have an account? <a href="#" onclick="showRegister()">Register</a>
+        </p>
+    </div>
+
+    <!-- REGISTER FORM -->
+    <div class="container hidden" id="registerForm">
+        <img src="/assets/logo.png" alt="Logo" class="logo">
+        <h2>Register</h2>
+        <form novalidate>
+            <div class="input-group">
+                <label>Name</label>
+                <input type="text" placeholder="Enter name" required>
+            </div>
+            <div class="input-group">
+                <label>Email or Contact</label>
+                <input type="text" placeholder="Enter email or phone" required>
+            </div>
+            <div class="input-group">
+                <label>Identity Proof</label>
+                <input type="file" required>
+            </div>
+            <div class="input-group">
+                <label>Profile Photo</label>
+                <input type="file" required>
+            </div>
+            <div class="input-group">
+                <input type="text" placeholder="Account Number" required>
+            </div>
+            <div class="input-group">
+                <input type="text" placeholder="IFSC Code" required>
+            </div>
+            <div class="input-group">
+                <label>Blank or Cancelled Cheque</label>
+                <input type="file">
+            </div>
+            <div class="input-group">
+                <label>User Type</label>
+                <select id="userType" required onchange="handleusers_type(this.value)">
+                    <option value="">Select Type</option>
+                    <option>Hospital</option>
+                    <option>Ambulance</option>
+                    <option>Lab Test</option>
+                    <option>Insurance</option>
+                    <option>Medicines</option>
+                    <option>Medical Equipments</option>
+                </select>
+            </div>
+            <!-- HOSPITAL EXTRA FIELDS -->
+                <div id="hospitalFields" class="hidden full-width">
+                    <h3 class="full-width">Hospital Details</h3>
+                    <div class="input-group">
+                        <label>Hospital Images (3)</label>
+                        <input type="file" name="hospital_images" multiple accept="image/*">
+                    </div>
+                    <div class="input-group">
+                        <label>Hospital Name</label>
+                        <input type="text" name="hospital_name" placeholder="Hospital Name" required>
+                    </div>
+                    <div class="input-group">
+                        <label>Address</label>
+                        <input type="text" id="address" name="address" placeholder="Hospital Address" required>
+                    </div>
+                    <div class="input-group">
+                        <label>Location(AutoFetch)</label>
+                        <input type="text" id="hsp_lcn" name="hsp_lcn" placeholder="Maps Links" readonly>
+                    </div>
+                    <div class="input-group">
+                        <label>coordinates(autofetch)</label>
+                        <input type="text" id="hsp_crdnt" name="hsp_crdnt" placeholder="Coordinates" readonly>
+                    </div>
+                    <div class="input-group">
+                        <label>Facilities</label>
+                        <input type="text" name="facilities" placeholder="Oxygen, ICU, Ventilator">
+                    </div>
+                    <!-- ROOMS SECTION -->
+                    <h3 class="full-width">Rooms</h3>
+                    <div id="roomsContainer" class="full-width"></div>
+                    <button type="button" onclick="addRoom()" id="addRoomBtn" class="btn small full-width">+ Add Room</button>
+
+                    <!-- DOCTORS SECTION -->
+                    <h3 class="full-width">Doctors</h3>
+                    <div id="doctorsContainer" class="full-width"></div>
+                    <button type="button" onclick="addDoctor()" id="addDoctorBtn" class="btn small full-width">+ Add Doctor</button>
+                    <!-- DOCUMENTS -->
+                    <h3 class="full-width">Documents</h3>
+                    <div class="input-group">
+                        <label>Hospital Registration Certificate</label>
+                        <input type="file">
+                    </div>
+                    <div class="input-group">
+                        <label>Shop License</label>
+                        <input type="file">
+                    </div>
+                    <div class="input-group">
+                        <label>Medical Council Registration</label>
+                        <input type="file">
+                    </div>
+                    <div class="input-group">
+                        <label>Electricity Bill / Agreement</label>
+                        <input type="file">
+                    </div>
+                </div>
+
+                <!-- AMBULANCE EXTRA FIELDS -->
+                <div id="ambulanceFields" class="hidden full-width">
+                    <h3 class="full-width">Ambulance Details</h3>
+                
+                    <div class="input-group">
+                        <label>Ambulance Type</label>
+                        <select>
+                            <option>Basic</option>
+                            <option>ICU</option>
+                            <option>Oxygen Supported</option>
+                        </select>
+                    </div>
+                
+                    <div class="input-group">
+                        <label>Base Charge per KM</label>
+                        <input type="text">
+                    </div>
+                
+                    <div class="input-group">
+                        <label>Minimum Fare</label>
+                        <input type="text">
+                    </div>
+                
+                    <div class="input-group">
+                        <label>Night Charges per KM</label>
+                        <input type="text">
+                    </div>
+                
+                    <div class="input-group">
+                        <label>Waiting Charges per KM</label>
+                        <input type="text">
+                    </div>
+                
+                    <div class="input-group">
+                        <label>Status</label>
+                        <select>
+                            <option>Available</option>
+                            <option>Busy / On Trip</option>
+                        </select>
+                    </div>
+                
+                    <div class="input-group">
+                        <label>ETA (Arrival Time)</label>
+                        <input type="text">
+                    </div>
+                
+                    <div class="input-group">
+                        <label>Booking Time Slot</label>
+                        <input type="text">
+                    </div>
+                
+                    <div class="input-group">
+                        <label>Area / Locality / Area</label>
+                        <input type="text" id="amb_loc">
+                    </div>
+
+                    <div class="input-group">
+                        <label>Location(Autofetch)</label>
+                        <input type="text" id="amb_lcn" name="amb_lcn" placeholder="Ambulance Location" readonly>
+                    </div>
+
+                    <div class="input-group">
+                        <label>Coordinates(AutoFetch)</label>
+                        <input type="text" id="amb_crdnt" name="amb_crdnt" placeholder="Location Coordinates(autofetch)" readonly>
+                    </div>
+                
+                    <div class="input-group full-width">
+                        <label>Description</label>
+                        <input type="text">
+                    </div>
+                
+                    <h3 class="full-width">Documents</h3>
+                
+                    <div class="input-group">
+                        <label>Driving License</label>
+                        <input type="file">
+                    </div>
+                
+                    <div class="input-group">
+                        <label>Vehicle RC Permit</label>
+                        <input type="file">
+                    </div>
+                
+                    <div class="input-group">
+                        <label>Driver Experience</label>
+                        <input type="text" required>
+                    </div>
+                
+                    <div class="input-group">
+                        <label>Vehicle Insurance</label>
+                        <input type="file">
+                    </div>
+                </div>
+
+                <!-- LAB TEST EXTRA FIELDS -->
+                <div id="labFields" class="hidden full-width">
+                    <h3 class="full-width">Lab Details</h3>
+                
+                    <div class="input-group">
+                        <label>Lab Name</label>
+                        <input type="text" id="lab_name">
+                    </div>
+                
+                    <div class="input-group">
+                        <label>Address</label>
+                        <input type="text" id="labAddress">
+                    </div>
+                
+                    <div class="input-group">
+                        <label>Location (Auto Fetch)</label>
+                        <input type="text" id="location">
+                    </div>
+
+                    <div class="input-group">
+                        <label>Coordinates(AutoFetch)</label>
+                        <input type="text" id="lab_crdnt" placeholder="Lab Coordinates(AutoFetch)" readonly>
+                    </div>
+                
+                    <div class="input-group full-width">
+                        <label>Description</label>
+                        <input type="text" id="description">
+                    </div>
+                
+                    <div class="input-group full-width">
+                        <label>Lab Type</label>
+                        <div class="checkbox-grid">
+                            <label><input type="checkbox"> Pathology</label>
+                            <label><input type="checkbox"> Radiology</label>
+                            <label><input type="checkbox"> Diagnostic</label>
+                        </div>
+                    </div>
+                
+                    <!-- AVAILABLE TESTS -->
+                    <div class="input-group full-width">
+                        <label>Available Tests</label>
+                        <div class="checkbox-grid">
+                            <label><input type="checkbox"> Blood Test</label>
+                            <label><input type="checkbox"> Urine Test</label>
+                            <label><input type="checkbox"> X-ray</label>
+                            <label><input type="checkbox"> MRI</label>
+                            <label><input type="checkbox"> CT Scan</label>
+                            <label><input type="checkbox"> ECG</label>
+                        </div>
+                    </div>
+                
+                    <!-- HOME COLLECTION -->
+                    <div class="input-group">
+                        <label>Home Collection</label>
+                        <select>
+                            <option>Yes</option>
+                            <option>No</option>
+                        </select>
+                    </div>
+                
+                    <div class="input-group">
+                        <label>Extra Charges</label>
+                        <input type="text" id="ext_chrg">
+                    </div>
+                
+                    <div class="input-group">
+                        <label>Available Areas</label>
+                        <input type="text" id="alb_area">
+                    </div>
+                
+                    <!-- DOCUMENTS -->
+                    <h3 class="full-width">Documents</h3>
+                
+                    <div class="input-group">
+                        <label>Lab Registration Certificate</label>
+                        <input type="file">
+                    </div>
+                
+                    <div class="input-group">
+                        <label>NABL Accreditation</label>
+                        <input type="file">
+                    </div>
+                
+                    <div class="input-group">
+                        <label>Pathologist Qualification Certificate</label>
+                        <input type="file">
+                    </div>
+                
+                    <!-- DOCTORS -->
+                    <h3 class="full-width">Pathologist Details</h3>
+                    <div id="pathologistContainer" class="full-width"></div>
+                    <button type="button" onclick="addPathologist()" class="btn small full-width">+ Add Pathologist</button>
+                
+                    <!-- EQUIPMENT -->
+                    <div class="input-group">
+                        <label>Advanced Equipment</label>
+                        <select>
+                            <option>Yes</option>
+                            <option>No</option>
+                        </select>
+                    </div>
+                
+                    <!-- TIMING -->
+                    <div class="input-group">
+                        <label>Lab Opening Hours</label>
+                        <input type="text" id="lab_open">
+                    </div>
+                
+                    <div class="input-group">
+                        <label>Test Availability Timing</label>
+                        <input type="text" id="test_time">
+                    </div>
+                
+                    <div class="input-group">
+                        <label>Emergency Test Availability</label>
+                        <select>
+                            <option>Yes</option>
+                            <option>No</option>
+                        </select>
+                    </div>
+
+                    <div class="input-group">
+                        <label>Test Price</label>
+                        <input type="text" id="test_price">
+                    </div>
+                </div>
+
+                <!-- INSURANCE EXTRA FIELDS -->
+                <div id="insuranceFields" class="hidden full-width">
+                    <!-- COMPANY DETAILS -->
+                    <h3 class="full-width">Company Details</h3>
+                    <div class="input-group">
+                        <label for="company_name">Company Name</label>
+                        <input type="text" id="company_name" name="company_name" placeholder="Enter company name">
+                    </div>
+                    <div class="input-group">
+                        <label for="company_type">Company Type</label>
+                        <select id="company_type" name="company_type">
+                            <option value="">Select Company Type</option>
+                            <option value="Health">Health</option>
+                            <option value="Life">Life</option>
+                            <option value="General">General</option>
+                        </select>
+                    </div>
+                    <div class="input-group full-width">
+                        <label for="ins_description">Description</label>
+                        <input type="text" id="ins_description" name="ins_description" placeholder="Enter company description">
+                    </div>
+                    <div class="input-group">
+                        <label for="irdai_number">IRDAI Number</label>
+                        <input type="text" id="irdai_number" name="irdai_number" placeholder="Enter IRDAI Number">
+                    </div>
+                    <div class="input-group">
+                        <label for="company_pan">Company PAN</label>
+                        <input type="text" id="company_pan" name="company_pan" placeholder="Enter Company PAN">
+                    </div>
+                    <div class="input-group">
+                        <label for="gst_number">GST Number</label>
+                        <input type="text" id="gst_number" name="gst_number" placeholder="Enter GST Number">
+                    </div>
+                    <div class="input-group">
+                        <label for="reg_doc">Certificate of Incorporation</label>
+                        <input type="file" id="reg_doc" name="reg_doc">
+                    </div>
+                    <div class="input-group">
+                        <label for="ins_address">Office Address</label>
+                        <input type="text" id="ins_address" name="ins_address" placeholder="Enter office address">
+                    </div>
+                    <div class="input-group">
+                        <label for="ins_lcn">Google Maps links</label>
+                        <input type="text" id="ins_lcn" name="ofc_lcn" placeholder="location link(Autofetch)" readonly>
+                    </div>
+                    <div class="input-group">
+                        <label for="ins_crdnt">Coordinates (autofetch)</label>
+                        <input type="text" name="ins_crdnt" id="ins_crdnt" placeholder="Lab Coordinates Autofetch" readonly>
+                    </div>
+                    <div class="input-group">
+                        <label for="policy_doc">Address Proof</label>
+                        <input type="file" id="policy_doc" name="policy_doc">
+                    </div>
+                    <div class="input-group">
+                        <label for="ins_price">Policy Price</label>
+                        <input type="text" id="ins_price" name="ins_price" placeholder="Enter policy price">
+                    </div>
+                    <!-- CLAIM DETAILS -->
+                    <h3 class="full-width">Claim Details</h3>
+                    <div class="input-group">
+                        <label for="claim_type">Claim Type</label>
+                        <select id="claim_type" name="claim_type">
+                            <option value="">Select Claim Type</option>
+                            <option value="Cashless">Cashless</option>
+                            <option value="Reimbursement">Reimbursement</option>
+                        </select>
+                    </div>
+                    <div class="input-group full-width">
+                        <label for="required_docs">Required Documents</label>
+                        <input type="text" id="required_docs" name="required_docs" placeholder="Enter required documents">
+                    </div>
+                    <div class="input-group">
+                        <label for="claim_approval_time">Claim Approval Time</label>
+                        <input type="text" id="claim_approval_time" name="claim_approval_time" placeholder="Example: 24 Hours">
+                    </div>
+                    <div class="input-group">
+                        <label for="claim_price">Claim Price / Premium</lable>
+                        <input type="text" id="claim_price" name="claim_price" placeholder="Enter claim price or premium">
+                    </div>
+                    <!-- SUPPORT DETAILS -->
+                    <h3 class="full-width">Support Details</h3>
+                    <div class="input-group">
+                        <label for="contact_number">Customer Support Number</label>
+                        <input type="text" id="contact_number" name="contact_number" placeholder="Enter support number">
+                    </div>
+                    <div class="input-group">
+                        <label for="ins_email">Email Support</label>
+                        <input type="email" id="ins_email" name="ins_email" placeholder="Enter support email">
+                    </div>
+                    <div class="input-group">
+                        <label for="contact_person">Claim Helpline Location</label>
+                        <input type="text" id="contact_person" name="contact_person" placeholder="Enter helpline location">
+                    </div>
+                    <div class="input-group">
+                        <label for="website">Website</label>
+                        <input type="text" id="website" name="website" placeholder="Enter website URL">
+                    </div>
+                </div>
+
+                <!-- MEDICINES / PHARMACY FIELDS -->
+                <div id="medicineFields" class="hidden full-width">
+                    <h3 class="full-width">Pharmacy Details</h3>
+                
+                    <div class="input-group">
+                        <label>Pharmacy / Shop Name</label>
+                        <input type="text" id="pharm_shop_name">
+                    </div>
+                
+                    <div class="input-group">
+                        <label>Owner Name</label>
+                        <input type="text" id="own_name">
+                    </div>
+                
+                    <div class="input-group">
+                        <label>Shop Type</label>
+                        <select id="shop_type">
+                            <option>Retail</option>
+                            <option>Wholesale</option>
+                        </select>
+                    </div>
+                
+                    <div class="input-group full-width">
+                        <label>Description</label>
+                        <input type="text" id="pharm_desc">
+                    </div>
+                
+                    <div class="input-group">
+                        <label>Drug License</label>
+                        <input type="file">
+                    </div>
+                
+                    <div class="input-group">
+                        <label>Issued By</label>
+                        <input type="text" id="issued_by">
+                    </div>
+                
+                    <div class="input-group">
+                        <label>Address</label>
+                        <input type="text" id="pharm_address">
+                    </div>
+                
+                    <div class="input-group">
+                        <label>Address Proof</label>
+                        <input type="file">
+                    </div>
+                
+                    <div class="input-group">
+                        <label>Location (Auto Fetch)</label>
+                        <input type="text" id="pharm_lcn">
+                    </div>
+
+                    <div class="input-group">
+                        <label>Coordinates(Auto Fetch)</label>
+                        <input type="text" id="pharm_crdnt">
+                    </div>
+                
+                    <div class="input-group">
+                        <label>Pharmacist Name</label>
+                        <input type="text" id="pharmacist_name">
+                    </div>
+                
+                    <div class="input-group">
+                        <label>State Pharmacy Council Registration</label>
+                        <input type="text" id="state_pharmacy_registration">
+                    </div>
+                
+                    <!-- PRODUCTS -->
+                    <div class="input-group full-width">
+                        <label>Available Products</label>
+                    
+                        <div class="checkbox-grid">
+                            <label><input type="checkbox"> Prescription Medicines</label>
+                            <label><input type="checkbox"> OTC (Over the Counter)</label>
+                            <label><input type="checkbox"> Surgical Items</label>
+                            <label><input type="checkbox"> Health Products</label>
+                        </div>
+                    </div>
+                
+                    <!-- DELIVERY -->
+                    <div class="input-group">
+                        <label>Home Delivery</label>
+                        <select id="pharm_home_delivery">
+                            <option>Yes</option>
+                            <option>No</option>
+                        </select>
+                    </div>
+                
+                    <div class="input-group">
+                        <label>Delivery Area</label>
+                        <input type="text" id="pharm_dev_area">
+                    </div>
+                
+                    <div class="input-group">
+                        <label>Delivery Charges</label>
+                        <input type="text" id="pharm_dev_charges">
+                    </div>
+                
+                    <!-- TIMING -->
+                    <div class="input-group">
+                        <label>Shop Opening Hours</label>
+                        <input type="text" id="pharm_opening_hours">
+                    </div>
+                
+                    <div class="input-group">
+                        <label>Availability</label>
+                        <select id="pharm_availability">
+                            <option>24X7</option>
+                            <option>Limited Hours</option>
+                        </select>
+                    </div>
+                
+                
+                    <!-- DOCUMENTS -->
+                    <h3 class="full-width">Documents</h3>
+                
+                    <div class="input-group">
+                        <label>GST Certificate</label>
+                        <input type="file">
+                    </div>
+                
+                    <div class="input-group">
+                        <label>Pharmacist Certificate</label>
+                        <input type="file">
+                    </div>
+                </div>
+
+                <!-- MEDICAL EQUIPMENTS FIELDS -->
+                <div id="equipmentFields" class="hidden full-width">
+                    <h3 class="full-width">Vendor / Business Details</h3>
+                    <div class="input-group">
+                        <label>Vendor / Business Name</label>
+                        <input type="text" id="me_vn">
+                    </div>
+                    <div class="input-group">
+                        <label>Owner Name</label>
+                        <input type="text" id="me_on">
+                    </div>
+                    <div class="input-group">
+                        <label>Business Type</label>
+                        <select id="me_bt">
+                            <option>Individual</option>
+                            <option>Company</option>
+                        </select>
+                    </div>
+                    <div class="input-group full-width">
+                        <label>Description</label>
+                        <input type="text" id="me_desc">
+                    </div>
+                    <!-- DOCUMENTS -->
+                    <h3 class="full-width">Documents</h3>
+                    <div class="input-group">
+                        <label>Address</label>
+                        <input type="text" id="me_address">
+                    </div>
+                    <div class="input-group">
+                        <label>Address Proof</label>
+                        <input type="file" id="me_address_proof">
+                    </div>
+                    <div class="input-group">
+                        <label>Location (Auto Fetch)</label>
+                        <input type="text" id="me_location">
+                    </div>
+                    <div class="input-group">
+                        <label>Coordinates (auto fetch)</label>
+                        <input type="text" id="me_crdnt">
+                    </div>
+                    <div class="input-group">
+                        <label>Quality Certificates</label>
+                        <input type="file" id="me_quality_certificates">
+                    </div>
+                    <div class="input-group">
+                        <label>Approval / Compliance</label>
+                        <input type="file" id="me_approval_compliance">
+                    </div>
+                </div>
+
+            <div class="input-group">
+                <label>OTP</label>
+                <input type="text" placeholder="Enter OTP">
+            </div>
+            <div class="input-group">
+                <label>Set Password</label>
+                <input type="password" required>
+            </div>
+            <div class="input-group">
+                <label>Confirm Password</label>
+                <input type="password" required>
+            </div>
+            <button type="submit" class="btn">Register</button>
+        </form>
+        <p class="switch-text">
+            Already Have an account? <a href="#" onclick="showLogin()">Login</a>
+        </p>
+    </div>
+
+    <script src="/js/rg.js"></script>
+</body>
+</html>

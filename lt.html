@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab Tests</title>
+    <link rel="stylesheet" type="text/css" href="/css/lt.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+</head>
+<body>
+
+    <nav id="navbar">
+        <div id="leftNavbar">
+            <div id="logoBox">
+                <img src="/assets/logo.png" id="logoImage">
+            </div>
+            <h2 id="welcomeText"> Welcome </h2>
+        </div>
+        <div id="centerNavbar">
+            <div class="navItem activeNav">
+                <i class="fa-solid fa-chart-line"></i>
+                <span>Dashboard</span>
+            </div>
+            <div class="navItem">
+                <i class="fa-solid fa-vial-circle-check"></i>
+                <span> Lab Tests</span>
+            </div>
+            <div class="navItem">
+                <i class="fa-solid fa-calendar-check"></i>
+                <span>Bookings</span>
+            </div>
+            <div class="navItem">
+                <i class="fa-solid fa-user-injured"></i>
+                <span>Patients</span>
+            </div>
+            <div class="navItem">
+                <i class="fa-solid fa-file-medical"></i>
+                <span>Reports</span>
+            </div>
+            <div class="navItem">
+                <i class="fa-solid fa-credit-card"></i>
+                <span>Payments</span>
+            </div>
+            <div class="navItem">
+                <i class="fa-solid fa-star"></i>
+                <span>Reviews</span>
+            </div>
+        </div>
+        <div id="rightNavbar">
+            <button id="logoutBtn">
+                <i class="fa-solid fa-right-from-bracket"></i>
+            </button>
+        </div>
+    </nav>
+    <div id="mainContainer">
+
+        <div id="dashboardSection">
+
+    <div id="dashboardHeader">
+
+        <div>
+
+            <h1 id="dashboardTitle">
+                Dashboard
+            </h1>
+
+            <p id="dashboardWelcome">
+                Welcome Back
+            </p>
+
+        </div>
+
+        <div id="dashboardDateBox">
+
+            <i class="fa-solid fa-calendar-days"></i>
+
+            <span id="dashboardDate"></span>
+
+        </div>
+
+    </div>
+
+    <div id="dashboardCards">
+
+        <div class="dashboardCard blueBorder">
+
+            <div class="dashboardIcon blueIcon">
+
+                <i class="fa-solid fa-vial"></i>
+
+            </div>
+
+            <div>
+
+                <h2 id="totalTests">
+                    0
+                </h2>
+
+                <p>
+                    Total Tests
+                </p>
+
+                <span>
+                    Active
+                </span>
+
+            </div>
+
+        </div>
+
+        <div class="dashboardCard pinkBorder">
+
+            <div class="dashboardIcon pinkIcon">
+
+                <i class="fa-solid fa-calendar-check"></i>
+
+            </div>
+
+            <div>
+
+                <h2 id="totalBookings">
+                    0
+                </h2>
+
+                <p>
+                    Total Bookings
+                </p>
+
+                <span>
+                    This Month
+                </span>
+
+            </div>
+
+        </div>
+
+        <div class="dashboardCard purpleBorder">
+
+            <div class="dashboardIcon purpleIcon">
+
+                <i class="fa-solid fa-indian-rupee-sign"></i>
+
+            </div>
+
+            <div>
+
+                <h2 id="totalEarnings">
+                    ₹0
+                </h2>
+
+                <p>
+                    Total Earnings
+                </p>
+
+                <span>
+                    This Month
+                </span>
+
+            </div>
+
+        </div>
+
+        <div class="dashboardCard orangeBorder">
+
+            <div class="dashboardIcon orangeIcon">
+
+                <i class="fa-solid fa-wallet"></i>
+
+            </div>
+
+            <div>
+
+                <h2 id="totalPayouts">
+                    ₹0
+                </h2>
+
+                <p>
+                    Total Payouts
+                </p>
+
+                <span>
+                    This Month
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div id="dashboardTables">
+
+        <div class="dashboardTableCard">
+
+            <div class="dashboardTableTitle">
+
+                Recent Bookings
+
+            </div>
+
+            <table class="dashboardTable">
+
+                <thead>
+
+                    <tr>
+
+                        <th>ID</th>
+                        <th>Patient</th>
+                        <th>Test</th>
+                        <th>Amount</th>
+                        <th>Status</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody id="dashboardBookingsBody">
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+        <div class="dashboardTableCard">
+
+            <div class="dashboardTableTitle">
+
+                Recent Payouts
+
+            </div>
+
+            <table class="dashboardTable">
+
+                <thead>
+
+                    <tr>
+
+                        <th>ID</th>
+                        <th>Amount</th>
+                        <th>Payment ID</th>
+                        <th>Status</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody id="dashboardPaymentsBody">
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>
+        <div id="labSection">
+            <div id="labTopBar">
+                <button id="addLabBtn">
+                    <i class="fa-solid fa-plus"></i>
+                    Add Lab
+                </button>
+            </div>
+            <div id="labTableContainer">
+                <table id="labTable">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Lab Name</th>
+                            <th>Address</th>
+                            <th>Home Collection</th>
+                            <th>Emergency Test</th>
+                            <th>Lab Hours</th>
+                            <th>Created At</th>
+                        </tr>
+                    </thead>
+                    <tbody id="labTableBody">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+<div id="insuranceBookingSection">
+
+    <div id="insuranceTopBar">
+        <h2>Insurance Purchases</h2>
+    </div>
+
+    <div id="insuranceTableContainer">
+        <table id="insuranceTable">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>User ID</th>
+                    <th>Plan Name</th>
+                    <th>Policy Number</th>
+                    <th>Coverage</th>
+                    <th>Premium</th>
+                    <th>Start Date</th>
+                    <th>Expiry Date</th>
+                    <th>Status</th>
+                    <th>Payment</th>
+                    <th>Created</th>
+                </tr>
+            </thead>
+            <tbody id="insuranceTableBody">
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div id="patientsSection">
+
+    <div id="patientsTopBar">
+        <h2>Lab Test Patients</h2>
+    </div>
+
+    <div id="patientsTableContainer">
+        <table id="patientsTable">
+
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>User Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Patient Name</th>
+                    <th>Test Name</th>
+                    <th>Collection Type</th>
+                    <th>Booking Date</th>
+                    <th>Total Amount</th>
+                    <th>Booking Status</th>
+                    <th>Payment Status</th>
+                    <th>Created At</th>
+                </tr>
+            </thead>
+
+            <tbody id="patientsTableBody">
+            </tbody>
+
+        </table>
+    </div>
+
+</div>
+
+<div id="reportsSection">
+
+    <div id="reportsTopBar">
+
+        <h2>Patient Reports</h2>
+
+    </div>
+
+    <div id="reportsTableContainer">
+
+        <table id="reportsTable">
+
+            <thead>
+
+                <tr>
+
+                    <th>ID</th>
+                    <th>User</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Patient</th>
+                    <th>Test</th>
+                    <th>Report</th>
+                    <th>Upload</th>
+                    <th>WhatsApp</th>
+                    <th>Gmail</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody id="reportsTableBody">
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+        <div id="paymentsSection">
+    <div id="paymentsTopBar">
+        <h2>
+            Payment History
+        </h2>
+    </div>
+    <div class="paymentsTableContainer">
+        <table class="paymentsTable">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Amount</th>
+                    <th>Razorpay Payment ID</th>
+                    <th>Status</th>
+                    <th>Paid At</th>
+                </tr>
+            </thead>
+            <tbody id="paymentsTableBody">
+            </tbody>
+        </table>
+    </div>
+        </div>
+
+    </div>
+
+<div id="labModal">
+    <div id="labModalBox">
+        <div id="labModalHeader">
+            <h2>Add Lab</h2>
+            <button id="closeLabModal">
+                X
+            </button>
+        </div>
+        <form id="labForm">
+            <div id="labFormGrid">
+                <div class="labInputGroup">
+                    <label>Lab Name</label>
+                    <input type="text" id="lab_name">
+                </div>
+                <div class="labInputGroup">
+                    <label>Address</label>
+                    <input type="text" id="lab_address">
+                </div>
+                <div class="labInputGroup">
+                    <label>Location</label>
+                    <input type="text" id="lab_location">
+                </div>
+                <div class="labInputGroup">
+                    <label>Extra Charges</label>
+                    <input type="text" id="extra_chrg">
+                </div>
+                <div class="labInputGroup fullWidth">
+                    <label>Description</label>
+                    <input type="text" id="lab_description">
+                </div>
+                <div class="labInputGroup fullWidth">
+                    <label>Lab Type</label>
+                    <div class="checkboxGrid" id="labTypeGrid">
+                        <label>
+                            <input type="checkbox" value="Pathology">
+                            Pathology
+                        </label>
+                        <label>
+                            <input type="checkbox" value="Radiology">
+                            Radiology
+                        </label>
+                        <label>
+                            <input type="checkbox" value="Diagnostic">
+                            Diagnostic
+                        </label>
+                    </div>
+                </div>
+                <div class="labInputGroup fullWidth">
+                    <label>Available Tests</label>
+                    <div class="checkboxGrid" id="labTestGrid">
+                        <label>
+                            <input type="checkbox" value="Blood Test">
+                            Blood Test
+                        </label>
+                        <label>
+                            <input type="checkbox" value="Urine Test">
+                            Urine Test
+                        </label>
+                        <label>
+                            <input type="checkbox" value="X-ray">
+                            X-ray
+                        </label>
+                        <label>
+                            <input type="checkbox" value="MRI">
+                            MRI
+                        </label>
+                        <label>
+                            <input type="checkbox" value="CT Scan">
+                            CT Scan
+                        </label>
+                        <label>
+                            <input type="checkbox" value="ECG">
+                            ECG
+                        </label>
+                    </div>
+                </div>
+                <div class="labInputGroup">
+                    <label>Test Price</label>
+                    <input type="text" id="test_price">
+                </div>
+                <div class="labInputGroup">
+                    <label>Home Collection</label>
+                    <select id="home_coll">
+                        <option>
+                            Yes
+                        </option>
+                        <option>
+                            No
+                        </option>
+                    </select>
+                </div>
+                <div class="labInputGroup">
+                    <label>Available Areas</label>
+                    <input type="text" id="available_areas">
+                </div>
+                <div class="labInputGroup">
+                    <label>Advanced Equipment</label>
+                    <select id="adv_equipment">
+                        <option>
+                            Yes
+                        </option>
+                        <option>
+                            No
+                        </option>
+                    </select>
+                </div>
+                <div class="labInputGroup">
+                    <label>Lab Hours</label>
+                    <input type="text" id="lab_hrs">
+                </div>
+                <div class="labInputGroup">
+                    <label>Test Timing</label>
+                    <input type="text" id="test_time">
+                </div>
+                <div class="labInputGroup">
+                    <label>Emergency Tests</label>
+                    <select id="emergency_test">
+                        <option>
+                            Yes
+                        </option>
+                        <option>
+                            No
+                        </option>
+                    </select>
+                </div>
+                <div class="labInputGroup">
+                    <label>Lab Registration</label>
+                    <input type="file" id="lab_reg">
+                </div>
+                <div class="labInputGroup">
+                    <label>NABL Certificate</label>
+                    <input type="file" id="nabl">
+                </div>
+                <div class="labInputGroup">
+                    <label>Pathologist Certificate</label>
+                    <input type="file" id="path_qual_cer">
+                </div>
+                <div class="fullWidth">
+                    <div class="sectionTop">
+                        <h3>Pathologists</h3>
+                        <button
+                            type="button"
+                            id="addPathologistBtn"
+                        >
+                            + Add
+                        </button>
+                    </div>
+                    <div id="pathologistContainer">
+                    </div>
+                </div>
+            </div>
+            <button type="submit" id="saveLabBtn">
+                Save Lab
+            </button>
+        </form>
+    </div>
+</div>
+
+    <script src="/js/lt.js"></script>
+</body>
+</html>

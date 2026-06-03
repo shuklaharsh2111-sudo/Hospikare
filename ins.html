@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Insurance</title>
+    <link rel="stylesheet" type="text/css" href="/css/ins.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+    <nav id="navbar">
+        <div id="leftNavbar">
+            <div id="logoBox">
+                <img
+                    src="/assets/logo.png"
+                    id="logoImage"
+                >
+            </div>
+            <h2 id="welcomeText">
+                Welcome
+            </h2>
+        </div>
+        <div id="centerNavbar">
+            <div class="navItem activeNav" id="dashboardNav">
+                <i class="fa-solid fa-chart-line"></i>
+                <span>
+                    Dashboard
+                </span>
+            </div>
+            <div class="navItem" id="plansNav">
+                <i class="fa-solid fa-file-shield"></i>
+                <span>
+                    Plans
+                </span>
+            </div>
+            <div class="navItem">
+                <i class="fa-solid fa-users"></i>
+                <span>
+                    Customer
+                </span>
+            </div>
+            <div class="navItem">
+                <i class="fa-solid fa-hand-holding-medical"></i>
+                <span>
+                    Claim
+                </span>
+            </div>
+            <div class="navItem">
+                <i class="fa-solid fa-credit-card"></i>
+                <span>Payments</span>
+            </div>
+            <div class="navItem">
+                <i class="fa-solid fa-star"></i>
+                <span>
+                    Reviews
+                </span>
+            </div>
+        </div>
+        <div id="rightNavbar">
+            <button id="logoutBtn">
+                <i class="fa-solid fa-right-from-bracket"></i>
+                Logout
+            </button>
+        </div>
+    </nav>
+    <div id="mainContainer">
+                <div id="paymentsSection">
+    <div id="paymentsTopBar">
+        <h2>
+            Payment History
+        </h2>
+    </div>
+    <div class="paymentsTableContainer">
+        <table class="paymentsTable">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Amount</th>
+                    <th>Razorpay Payment ID</th>
+                    <th>Status</th>
+                    <th>Paid At</th>
+                </tr>
+            </thead>
+            <tbody id="paymentsTableBody">
+            </tbody>
+        </table>
+    </div>
+        </div>
+    </div>
+    <div id="insuranceModal">
+    <div id="insuranceModalBox">
+        <div id="insuranceModalHeader">
+            <h2>
+                Add Insurance Plan
+            </h2>
+            <button
+                id="closeInsuranceModal"
+                onclick="closeInsuranceModal()"
+            >
+                ✕
+            </button>
+        </div>
+        <form id="insuranceForm" enctype="multipart/form-data">
+            <div id="insuranceFormGrid">
+                <h3 class="fullWidth">
+                    Company Details
+                </h3>
+                <div class="input-group">
+                    <label>
+                        Company Name
+                    </label>
+                    <input
+                        type="text"
+                        name="comp_name"
+                    >
+                </div>
+                <div class="input-group">
+                    <label>
+                        Company Type
+                    </label>
+                    <select
+                        name="comp_type"
+                    >
+                        <option value="">
+                            Select Type
+                        </option>
+                        <option value="Health">
+                            Health
+                        </option>
+                        <option value="Life">
+                            Life
+                        </option>
+                        <option value="General">
+                            General
+                        </option>
+                    </select>
+                </div>
+                <div class="input-group fullWidth">
+                    <label>
+                        Description
+                    </label>
+                    <input
+                        type="text"
+                        name="ins_description"
+                    >
+                </div>
+                <div class="input-group">
+                    <label>
+                        IRDAI Number
+                    </label>
+                    <input
+                        type="text"
+                        name="irdai_number"
+                    >
+                </div>
+                <div class="input-group">
+                    <label>
+                        Company PAN
+                    </label>
+                    <input
+                        type="text"
+                        name="comp_pan"
+                    >
+                </div>
+                <div class="input-group">
+                    <label>
+                        GST Number
+                    </label>
+                    <input
+                        type="text"
+                        name="gst_number"
+                    >
+                </div>
+                <div class="input-group">
+                    <label>
+                        Certificate
+                    </label>
+                    <input
+                        type="file"
+                        name="reg_doc"
+                    >
+                </div>
+                <div class="input-group fullWidth">
+                    <label>
+                        Office Address
+                    </label>
+                    <input
+                        type="text"
+                        name="ins_address"
+                    >
+                </div>
+                <div class="input-group">
+                    <label>
+                        Address Proof
+                    </label>
+                    <input
+                        type="file"
+                        name="policy_doc"
+                    >
+                </div>
+                <h3 class="fullWidth">
+                    Claim Details
+                </h3>
+                <div class="input-group">
+                    <label>
+                        Claim Type
+                    </label>
+                    <select
+                        name="claim_type"
+                    >
+                        <option value="">
+                            Select Type
+                        </option>
+                        <option value="Cashless">
+                            Cashless
+                        </option>
+                        <option value="Reimbursement">
+                            Reimbursement
+                        </option>
+                    </select>
+                </div>
+                <div class="input-group fullWidth">
+                    <label>
+                        Required Documents
+                    </label>
+                    <input
+                        type="text"
+                        name="required_docs"
+                    >
+                </div>
+                <div class="input-group">
+                    <label>
+                        Claim Approval Time
+                    </label>
+                    <input
+                        type="text"
+                        name="claim_approval_time"
+                    >
+                </div>
+                <h3 class="fullWidth">
+                    Support Details
+                </h3>
+                <div class="input-group">
+                    <label>
+                        Customer Support Number
+                    </label>
+                    <input
+                        type="text"
+                        name="contact_number"
+                    >
+                </div>
+                <div class="input-group">
+                    <label>
+                        Email Support
+                    </label>
+                    <input
+                        type="email"
+                        name="ins_email"
+                    >
+                </div>
+            </div>
+            <button
+                type="submit"
+                id="saveInsuranceBtn"
+            >
+                Save Insurance
+            </button>
+        </form>
+    </div>
+</div>
+
+    <script src="/js/ins.js"></script>
+</body>
+</html>
